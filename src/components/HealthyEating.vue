@@ -19,9 +19,9 @@
                             @tap="onCloseDrawerTap" />
                     </StackLayout>
                     <StackLayout ~mainContent>
-                        <Button @tap="onOpenDrawerTap" width="10%" horizontalAlignment="left">
+                        <Button @tap="homeTap" width="10%" horizontalAlignment="left">
                             <FormattedString>
-                                <Span class="fas nav-button" :text="'fa-bars' | fonticon"></Span>
+                                <Span class="fas nav-button" :text="'fa-chevron-left' | fonticon"></Span>
                             </FormattedString>
                         </Button>
                         <TextView editable="false">
@@ -35,7 +35,7 @@
                                 <Span text=" home-cooked meals a day." />
                             </FormattedString>
                         </TextView>
-                        <TextField v-model="textFieldValue"
+                        <TextField v-model="textFieldValue" keyboardType="number" maxLength="2"
                             hint="Enter number of home-cooked meals eaten today..." />
                         <Button text="Submit" @tap="onButtonTap" />
                             </StackLayout>

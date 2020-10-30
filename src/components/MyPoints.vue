@@ -20,9 +20,9 @@
                             @tap="onCloseDrawerTap" />
                     </StackLayout>
                     <StackLayout ~mainContent>
-                        <Button @tap="onOpenDrawerTap" width="10%" horizontalAlignment="left">
+                        <Button @tap="homeTap" width="10%" horizontalAlignment="left">
                             <FormattedString>
-                                <Span class="fas nav-button" :text="'fa-bars' | fonticon"></Span>
+                                <Span class="fas nav-button" :text="'fa-chevron-left' | fonticon"></Span>
                             </FormattedString>
                         </Button>
                         <TextView editable="false">
