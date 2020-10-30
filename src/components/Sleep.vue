@@ -1,25 +1,30 @@
 <template>
-    <Page>
+    <Page class="ns-dark" actionBarHidden = "true">
         <ScrollView>
 
             <GridLayout rows="*" height="1500px">
                 <RadSideDrawer ref="drawer">
-                    <StackLayout ~drawerContent backgroundColor="gray">
+                    <StackLayout ~drawerContent backgroundColor="dark">
                         <StackLayout height="56"
                             style="text-align: center; vertical-align: center;">
-                            <Label text="Navigation Menu" />
+                            <Label color="white" text="Navigation Menu" />
                         </StackLayout>
                         <StackLayout>
-                            <Label text="Home" padding="10" @tap="homeTap" />
-                            <Label text="My Points" padding="10"
+                            <Label color="white" text="Home" padding="10" @tap="homeTap" />
+                            <Label color="white" text="My Points" padding="10"
                                 @tap="myPointsTap" />
-                            <Label text="Settings" padding="10" />
+                            <Label color="white" text="Settings" padding="10" />
                         </StackLayout>
-                        <Label text="Close" color="lightgray" padding="10"
+                        <Label text="Close" color="white" padding="10"
                             style="horizontal-align: center"
                             @tap="onCloseDrawerTap" />
                     </StackLayout>
                     <StackLayout ~mainContent>
+                        <Button @tap="onOpenDrawerTap" width="10%" horizontalAlignment="left">
+                            <FormattedString>
+                                <Span class="fas nav-button" :text="'fa-bars' | fonticon"></Span>
+                            </FormattedString>
+                        </Button>
                         <TextView editable="false">
                             <FormattedString>
                                 <Span text=" Did you know "

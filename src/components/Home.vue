@@ -1,29 +1,32 @@
 <template>
-    <Page>
+    <Page class="ns-dark" actionBarHidden = "true">
         <ScrollView>
-            <ActionBar title="Home" />
-
             <GridLayout rows="*" height="1500px">
                 <RadSideDrawer ref="drawer">
-                    <StackLayout ~drawerContent backgroundColor="gray">
+                    <StackLayout ~drawerContent backgroundColor="dark">
                         <StackLayout height="56"
                             style="text-align: center; vertical-align: center;">
-                            <Label text="Navigation Menu" />
+                            <Label color="white" text="Navigation Menu" />
                         </StackLayout>
                         <StackLayout>
                             <Label text="Home" padding="10"
-                                backgroundColor="lightgray" />
-                            <Label text="My Points" @tap="myPointsTap"
+                                backgroundColor="white" />
+                            <Label color="white" text="My Points" @tap="myPointsTap"
                                 padding="10" />
-                            <Label text="Settings" padding="10" />
+                            <Label color="white" text="Settings" padding="10" />
                         </StackLayout>
-                        <Label text="Close" color="lightgray" padding="10"
+                        <Label text="Close" color="white" padding="10"
                             style="horizontal-align: center"
                             @tap="onCloseDrawerTap" />
                     </StackLayout>
                     <StackLayout ~mainContent>
-                        <Label class="fas" :text="'fa-bars' | fonticon" />
-                        <Button text="Open Drawer" @tap="onOpenDrawerTap" margin="10" style="horizontal-align: left" />
+
+                        <Button @tap="onOpenDrawerTap" width="10%" horizontalAlignment="left">
+                            <FormattedString>
+                                <Span class="fas nav-button" :text="'fa-bars' | fonticon"></Span>
+                            </FormattedString>
+                        </Button>
+                        
                         <TextView editable="false">
                             <FormattedString>
                                 <Span class="welcome" text="Welcome," />
@@ -38,13 +41,26 @@
                             </FormattedString>
                         </TextView>
                         
-                        <Button text="Sleep" @tap="sleepTap" />
-                        <Button text="Exercise" @tap="exerciseTap" />
-                        <Button text="Healthy Eating"
-                            @tap="healthyEatingTap" />
-                        <Button text="Self Care Time" @tap="selfCareTap" />
-                        <Button text="Relationships"
-                            @tap="relationshipsTap" />
+                        <Button @tap="sleepTap">
+                            <Span class="fas" :text="'fa-bed' | fonticon"></Span>
+                            <Span text="  Sleep"></Span>
+                        </Button>
+                        <Button @tap="exerciseTap"> 
+                            <Span class="fas" :text="'fa-running' | fonticon"></Span>
+                            <Span text="  Exercise"></Span>
+                        </Button>
+                        <Button @tap="healthyEatingTap"> 
+                            <Span class="fas" :text="'fa-utensils' | fonticon"></Span>
+                            <Span text="  Healthy Eating"></Span>
+                        </Button>
+                        <Button @tap="selfCareTap">
+                            <Span class="fas" :text="'fa-heart' | fonticon"></Span>
+                            <Span text="  Self Care Time"></Span>
+                        </Button>
+                        <Button @tap="relationshipsTap">
+                            <Span class="fas" :text="'fa-user-friends' | fonticon"></Span>
+                            <Span text="  Relationships"></Span>
+                        </Button>
                     </StackLayout>
                 </RadSideDrawer>
             </GridLayout>
@@ -121,13 +137,9 @@
 </script>
 
 <style scoped>
-    .home-panel {
-        vertical-align: center;
-        font-size: 20;
-        margin: 15;
-    }
-
     .description-label {
         margin-bottom: 15;
     }
+
+    
 </style>

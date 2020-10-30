@@ -1,7 +1,9 @@
 // NativeScript core theme
 // @see https://docs.nativescript.org/ui/theme
-@import "~@nativescript/theme/core";
-@import "~@nativescript/theme/sky";
+//@import "~@nativescript/theme/core";
+//@import "~@nativescript/theme/blue";
+@import "~@nativescript/theme/css/core.css";
+@import "~@nativescript/theme/css/default.css";
 
 // Override variables here
 
@@ -21,4 +23,10 @@
 .fas {
   font-family: "Font Awesome 5 Free", "fa-solid-900";
   font-weight: 400;
+}
+
+.nav-button {
+  color: white;
+  border: none;
+  width: 30%;
 }
