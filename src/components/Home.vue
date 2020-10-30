@@ -22,6 +22,8 @@
                             @tap="onCloseDrawerTap" />
                     </StackLayout>
                     <StackLayout ~mainContent>
+                        <Label :text="'fa-user' | fonticon" class="fa" />
+                        <Button text="Open Drawer" @tap="onOpenDrawerTap" margin="10" style="horizontal-align: left" />
                         <TextView editable="false">
                             <FormattedString>
                                 <Span class="welcome" text="Welcome," />
@@ -35,7 +37,7 @@
                                 <Span text="Choose an activity to track: " />
                             </FormattedString>
                         </TextView>
-
+                        
                         <Button text="Sleep" @tap="sleepTap" />
                         <Button text="Exercise" @tap="exerciseTap" />
                         <Button text="Healthy Eating"

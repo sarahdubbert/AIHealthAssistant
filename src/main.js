@@ -1,6 +1,8 @@
 import Vue from 'nativescript-vue'
 import Home from './components/Home'
 import VueDevtools from 'nativescript-vue-devtools'
+import {TNSFontIcon, fonticon} from 'nativescript-fonticon'
+
 
 if(TNS_ENV !== 'production') {
   Vue.use(VueDevtools)
@@ -14,6 +16,15 @@ Vue.registerElement(
   'RadSideDrawer',
   () => require('nativescript-ui-sidedrawer').RadSideDrawer
 )
+
+TNSFontIcon.debug = true;
+TNSFontIcon.paths = {
+  'fa': './assets/font-awesome.css'
+};
+TNSFontIcon.loadCss();
+
+Vue.filter('fonticon', fonticon);
+
 
 new Vue({
   store,
