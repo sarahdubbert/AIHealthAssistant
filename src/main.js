@@ -19,7 +19,9 @@ Vue.registerElement(
 
 TNSFontIcon.debug = true;
 TNSFontIcon.paths = {
-  'fa': './assets/font-awesome.css'
+  'fa': './assets/fontawesome.min.css',
+  'fas': './assets/solid.min.css',
+  'fab': './assets/brands.min.css'
 };
 TNSFontIcon.loadCss();
 

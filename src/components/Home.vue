@@ -22,7 +22,7 @@
                             @tap="onCloseDrawerTap" />
                     </StackLayout>
                     <StackLayout ~mainContent>
-                        <Label :text="'fa-user' | fonticon" class="fa" />
+                        <Label class="fas" :text="'fa-bars' | fonticon" />
                         <Button text="Open Drawer" @tap="onOpenDrawerTap" margin="10" style="horizontal-align: left" />
                         <TextView editable="false">
                             <FormattedString>
