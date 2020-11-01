@@ -1,57 +1,60 @@
 <template>
-    <Page class="ns-dark" actionBarHidden = "true">
-        <ScrollView>
-
-            <GridLayout rows="*" height="1500px">
-                <RadSideDrawer ref="drawer">
-                    <StackLayout ~drawerContent backgroundColor="dark">
-                        <StackLayout height="56"
-                            style="text-align: center; vertical-align: center;">
-                            <Label color="white" text="Navigation Menu" />
-                        </StackLayout>
-                        <StackLayout>
-                            <Label color="white" text="Home" padding="10" @tap="homeTap" />
-                            <Label text="My Points" padding="10"
-                                backgroundColor="white" />
-                            <Label color="white" text="Settings" padding="10" />
-                        </StackLayout>
-                        <Label text="Close" color="white" padding="10"
-                            style="horizontal-align: center"
-                            @tap="onCloseDrawerTap" />
-                    </StackLayout>
-                    <StackLayout ~mainContent>
-                        <Button @tap="homeTap" width="10%" horizontalAlignment="left">
-                            <FormattedString>
-                                <Span class="fas nav-button" :text="'fa-chevron-left' | fonticon"></Span>
-                            </FormattedString>
-                        </Button>
-                        <TextView editable="false">
-                            <FormattedString>
-                                <Label
-                                    :text="'You have ' + this.$store.state.totalPoints" />
-                            </FormattedString>
-                        </TextView>
-                        <GridLayout rows="*" height="1000px">
-                            <RadCartesianChart row="0" style="font-size: 12;">
-                                <LineSeries v-tkCartesianSeries
-                                    :items="categoricalSource"
-                                    categoryProperty="Country"
-                                    valueProperty="Amount" />
-                                <CategoricalAxis
-                                    v-tkCartesianHorizontalAxis />
-                                <LinearAxis v-tkCartesianVerticalAxis />
-                            </RadCartesianChart>
-                        </GridLayout>
-
-
-                    </StackLayout>
-                </RadSideDrawer>
-                <Button text="Press" @tap="onButtonTap"/>
+  <Page class="ns-dark" actionBarHidden="true">
+    <ScrollView>
+      <GridLayout rows="*" height="1500px">
+        <RadSideDrawer ref="drawer">
+          <StackLayout ~drawerContent backgroundColor="dark">
+            <StackLayout
+              height="56"
+              style="text-align: center; vertical-align: center;"
+            >
+              <Label color="white" text="Navigation Menu" />
+            </StackLayout>
+            <StackLayout>
+              <Label color="white" text="Home" padding="10" @tap="homeTap" />
+              <Label text="My Points" padding="10" backgroundColor="white" />
+              <Label color="white" text="My Profile" @tap="myProfileTap" padding="10" />
+            </StackLayout>
+            <Label
+              text="Close"
+              color="white"
+              padding="10"
+              style="horizontal-align: center"
+              @tap="onCloseDrawerTap"
+            />
+          </StackLayout>
+          <StackLayout ~mainContent>
+            <Button @tap="homeTap" width="10%" horizontalAlignment="left">
+              <FormattedString>
+                <Span
+                  class="fas nav-button"
+                  :text="'fa-chevron-left' | fonticon"
+                ></Span>
+              </FormattedString>
+            </Button>
+            <TextView editable="false">
+              <FormattedString>
+                <Label :text="'You have ' + this.$store.state.totalPoints" />
+              </FormattedString>
+            </TextView>
+            <GridLayout rows="*" height="1000px">
+              <RadCartesianChart row="0" style="font-size: 12;">
+                <LineSeries
+                  v-tkCartesianSeries
+                  :items="categoricalSource"
+                  categoryProperty="Country"
+                  valueProperty="Amount"
+                />
+                <CategoricalAxis v-tkCartesianHorizontalAxis />
+                <LinearAxis v-tkCartesianVerticalAxis />
+              </RadCartesianChart>
             </GridLayout>
-
-
-        </ScrollView>
-    </Page>
+          </StackLayout>
+        </RadSideDrawer>
+        <Button text="Press" @tap="onButtonTap" />
+      </GridLayout>
+    </ScrollView>
+  </Page>
 </template>
 
 <script>
@@ -134,13 +137,13 @@
 </script>
 
 <style scoped>
-    .home-panel {
-        vertical-align: center;
-        font-size: 20;
-        margin: 15;
-    }
+.home-panel {
+  vertical-align: center;
+  font-size: 20;
+  margin: 15;
+}
 
-    .description-label {
-        margin-bottom: 15;
-    }
+.description-label {
+  margin-bottom: 15;
+}
 </style>
