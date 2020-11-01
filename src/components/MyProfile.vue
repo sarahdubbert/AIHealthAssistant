@@ -47,7 +47,7 @@
                 <Span text="  Sleep"></Span>
             </TextView>
             <TextField
-              v-model="textFieldValue"
+              v-model="sleepGoal"
               keyboardType="number"
               maxLength="2"
               id="exerciseField"
@@ -57,7 +57,7 @@
                 <Span text="  Exercise"></Span>
             </TextView>
             <TextField
-              v-model="textFieldValue"
+              v-model="exerciseGoal"
               keyboardType="number"
               maxLength="2"
               id="sleepField"
@@ -67,7 +67,7 @@
               <Span text="  Healthy Eating"></Span>
             </TextView>
             <TextField
-              v-model="textFieldValue"
+              v-model="eatingGoal"
               keyboardType="number"
               maxLength="2"
               id="healthyEatingField"
@@ -77,7 +77,7 @@
                 <Span text="  Self Care Time"></Span>
             </TextView>
             <TextField
-              v-model="textFieldValue"
+              v-model="careGoal"
               keyboardType="number"
               maxLength="2"
               id="selfCareField"
@@ -87,12 +87,12 @@
                 <Span text="  Relationships"></Span>
             </TextView>
             <TextField
-              v-model="textFieldValue"
+              v-model="relationshipGoal"
               keyboardType="number"
               maxLength="2"
               id="relationshipsField"
             />
-            <Button text="Submit" @tap="onButtonTap" />
+            <Button text="Submit" @tap="onSubmit" />
           </StackLayout>
         </RadSideDrawer>
       </GridLayout>
@@ -112,9 +112,14 @@ import MyProfile from "./MyProfile";
 Vue.use(RadSideDrawer);
 
 export default {
-  methods: {
-    onButtonTap() {
-      console.log("Button was pressed");
+    methods: {
+    onSubmit() {
+        this.$store.commit('updateSleepGoal', this.sleepGoal);
+        this.$store.commit('updateExerciseGoal', this.exerciseGoal);
+        this.$store.commit('updateEatingGoal', this.eatingGoal);
+        this.$store.commit('updateCareGoal', this.careGoal);
+        this.$store.commit('updateRelationshipGoal', this.relationshipGoal);
+        console.log("updated goals");
     },
 
     onOpenDrawerTap() {
@@ -140,11 +145,11 @@ export default {
     return {
       isBusy: true,
 
-      selectedListPickerIndex: 0,
-
-      currentHour: new Date().getHours(),
-      currentMinute: new Date().getMinutes(),
-      textFieldValue: "",
+      sleepGoal: 0,
+      exerciseGoal: 0,
+      eatingGoal: 0,
+      careGoal: 0,
+      relationshipGoal: 0,
     };
   },
 };

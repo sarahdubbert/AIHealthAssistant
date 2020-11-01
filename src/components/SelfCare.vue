@@ -44,7 +44,7 @@
                   text=" that self care can look different for everyone? Check out some of our tips. "
                 />
                 <Span text=" Your current goal is to get " />
-                <Span text=" 1 " fontWeight="Bold" />
+                <Span :text=" careGoal " fontWeight="Bold" />
                 <Span text=" hour of time to yourself each day." />
               </FormattedString>
             </TextView>
@@ -94,6 +94,12 @@ export default {
     },
     myPointsTap() {
       this.$navigateTo(MyPoints);
+    },
+  },
+
+  computed: {
+    careGoal() {
+      return this.$store.state.careGoal;
     },
   },
 

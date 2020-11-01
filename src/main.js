@@ -27,6 +27,7 @@ TNSFontIcon.loadCss();
 
 Vue.filter('fonticon', fonticon);
 
+Vue.use(require('vue-moment'));
 
 new Vue({
   store,

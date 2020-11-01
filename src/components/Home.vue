@@ -46,7 +46,8 @@
               <FormattedString>
                 <Span class="welcome" text="Welcome," />
                 <Span text=" Sarah." fontWeight="Bold" />
-                <Span text=" Today's date is October 29, 2020." />
+                <Span text=" Today's date is "/>
+                <Span :text=" getDate " />
               </FormattedString>
             </TextView>
             <TextView editable="false">
@@ -139,6 +140,17 @@ export default {
     },
     onCloseDrawerTap() {
       this.$refs.drawer.nativeView.closeDrawer();
+    },
+  },
+
+  computed: {
+    getDate() {
+      const toTwoDigits = num => num < 10 ? '0' + num : num;
+      let today = new Date();
+      let year = today.getFullYear();
+      let month = toTwoDigits(today.getMonth() + 1);
+      let day = toTwoDigits(today.getDate());
+      return `${month}-${day}-${year}.`;
     },
   },
 

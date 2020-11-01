@@ -44,7 +44,7 @@
                   text=" that getting enough sleep improves your concentration and focus?"
                 />
                 <Span text=" Your current goal is to get " />
-                <Span text=" 8 " fontWeight="Bold" />
+                <Span :text=" sleepGoal " fontWeight="Bold" />
                 <Span text=" hours of sleep each night." />
               </FormattedString>
             </TextView>
@@ -104,6 +104,12 @@ export default {
           numHours: this.numHours,
         },
       });
+    },
+  },
+
+  computed: {
+    sleepGoal() {
+      return this.$store.state.sleepGoal;
     },
   },
 

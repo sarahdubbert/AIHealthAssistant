@@ -44,7 +44,7 @@
                   text=" that diets made up of whole foods are less expensive than diets made up of processed foods?"
                 />
                 <Span text=" Your current goal is to eat " />
-                <Span text=" 3 " fontWeight="Bold" />
+                <Span :text=" eatingGoal " fontWeight="Bold" />
                 <Span text=" home-cooked meals a day." />
               </FormattedString>
             </TextView>
@@ -94,6 +94,12 @@ export default {
     },
     myPointsTap() {
       this.$navigateTo(MyPoints);
+    },
+  },
+
+  computed: {
+    eatingGoal() {
+      return this.$store.state.eatingGoal;
     },
   },
 

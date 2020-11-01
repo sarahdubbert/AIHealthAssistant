@@ -42,7 +42,7 @@
                 <Span text=" Did you know " fontWeight="Bold" />
                 <Span text=" that exercising improves your memory?" />
                 <Span text=" Your current goal is to get " />
-                <Span text=" 1 " fontWeight="Bold" />
+                <Span :text=" exerciseGoal " fontWeight="Bold" />
                 <Span text=" hour of exercise each day." />
               </FormattedString>
             </TextView>
@@ -92,6 +92,12 @@ export default {
     },
     myPointsTap() {
       this.$navigateTo(MyPoints);
+    },
+  },
+
+  computed: {
+    exerciseGoal() {
+      return this.$store.state.exerciseGoal;
     },
   },
 

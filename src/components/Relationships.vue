@@ -44,7 +44,7 @@
                   text=" that spending time with the people you love is proven to reduce stress, increase self-esteem, and improve mental health? "
                 />
                 <Span text=" Your current goal is to spend " />
-                <Span text=" 1 " fontWeight="Bold" />
+                <Span :text=" relationshipGoal " fontWeight="Bold" />
                 <Span text=" hour with a loved one each day." />
               </FormattedString>
             </TextView>
@@ -94,6 +94,12 @@ export default {
     },
     myPointsTap() {
       this.$navigateTo(MyPoints);
+    },
+  },
+
+  computed: {
+    relationshipGoal() {
+      return this.$store.state.relationshipGoal;
     },
   },
 
