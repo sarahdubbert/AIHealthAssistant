@@ -76,7 +76,7 @@ Vue.use(RadSideDrawer);
 export default {
   methods: {
     onButtonTap() {
-      console.log("Button was pressed");
+      this.$store.commit('increasePointsEating', this.textFieldValue);
     },
 
     onOpenDrawerTap() {

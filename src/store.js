@@ -9,12 +9,20 @@ export default new Vuex.Store({
 
   },
   mutations: {
-    increasePointsSleep(numHours) {
-      totalPoints = totalPoints + (2 * numHours);
+    increasePointsSleep(state, numHours) {
+      state.totalPoints += (2 * numHours);
     },
 
-    getPoints() {
-      return this.$pointStore.totalPoints;
+    increasePointsExercise(state, numHours) {
+      state.totalPoints += (5 * numHours);
+    },
+
+    increasePointsEating(state, calories) {
+      state.totalPoints += (4 * calories);
+    },
+
+    getPoints(state) {
+      return state.totalPoints;
     }
 
   },

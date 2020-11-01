@@ -76,7 +76,7 @@ Vue.use(RadSideDrawer);
 export default {
   methods: {
     onButtonTap() {
-      console.log(this.numHours);
+      this.$store.commit('increasePointsSleep', this.textFieldValue);
     },
 
     onOpenDrawerTap() {
