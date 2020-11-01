@@ -38,8 +38,8 @@
                         </TextView>
                         <TextField v-model="textFieldValue" keyboardType="number" maxLength="2"
                             hint="Enter number of hours exercised today..." />
-                        <Button text="Submit" @tap="onButtonTap" />
-                            </StackLayout>
+                        <Button text="Submit" @tap="onButtonTap"/> 
+                    </StackLayout>
                 </RadSideDrawer>
             </GridLayout>
 

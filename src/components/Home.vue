@@ -30,7 +30,7 @@
                         <TextView editable="false">
                             <FormattedString>
                                 <Span class="welcome" text="Welcome," />
-                                <Span text=" Sarah." fontWeight="Bold" />
+                                <Span text=" Alex." fontWeight="Bold" />
                                 <Span
                                     text=" Today's date is October 29, 2020." />
                             </FormattedString>
@@ -111,10 +111,12 @@
             },
 
             homeTap() {
+                console.log('sdfsdf');
                 this.$navigateTo(Home);
             },
             myPointsTap() {
                 this.$navigateTo(MyPoints);
+                console.log('we are at home');
             },
 
             onOpenDrawerTap() {

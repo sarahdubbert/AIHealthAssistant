@@ -61,7 +61,8 @@
     export default {
         methods: {
             onButtonTap() {
-                console.log("Button was pressed");
+                console.log(this.numHours)
+
             },
 
             onOpenDrawerTap() {
@@ -75,7 +76,11 @@
                 this.$navigateTo(Home);
             },
             myPointsTap() {
-                this.$navigateTo(MyPoints);
+                this.$navigateTo(MyPoints, {
+                        props: {
+                            numHours: this.numHours
+                        }
+                });
             }
         },
 
@@ -87,7 +92,7 @@
 
                 currentHour: new Date().getHours(),
                 currentMinute: new Date().getMinutes(),
-                textFieldValue: ""
+                numHours: 7
             };
         }
     };

@@ -27,10 +27,8 @@
                         </Button>
                         <TextView editable="false">
                             <FormattedString>
-                                <Span
-                                    text="You've earned 20 points so far today. Great work! " />
-                                <Span
-                                    text=" Here's a summary of your points for this week " />
+                                <Label
+                                    :text="'You have slept for' + numHours" />
                             </FormattedString>
                         </TextView>
                         <GridLayout rows="*" height="1000px">
@@ -48,6 +46,7 @@
 
                     </StackLayout>
                 </RadSideDrawer>
+                <Button text="Press" @tap="onButtonTap"/>
             </GridLayout>
 
 
@@ -74,9 +73,10 @@
     Vue.use(RadSideDrawer);
 
     export default {
+        props: ["numHours"],
         methods: {
             onButtonTap() {
-                console.log("Button was pressed");
+                console.log(this.numHours);
             },
 
             sleepTap() {
@@ -112,69 +112,20 @@
             },
             onCloseDrawerTap() {
                 this.$refs.drawer.nativeView.closeDrawer();
+            },
+            calculateSleepPoints() {
+                this.sleepPoints = this.sleepPoints + 2 * this.numHours
             }
         },
-
         data() {
             return {
-                categoricalSource: [{
-                        Country: "Germany",
-                        Amount: 15,
-                        SecondVal: 14,
-                        ThirdVal: 24
-                    },
-                    {
-                        Country: "France",
-                        Amount: 13,
-                        SecondVal: 23,
-                        ThirdVal: 25
-                    },
-                    {
-                        Country: "Bulgaria",
-                        Amount: 24,
-                        SecondVal: 17,
-                        ThirdVal: 23
-                    },
-                    {
-                        Country: "Spain",
-                        Amount: 11,
-                        SecondVal: 19,
-                        ThirdVal: 24
-                    },
-                    {
-                        Country: "USA",
-                        Amount: 18,
-                        SecondVal: 8,
-                        ThirdVal: 21
-                    }
-                ],
-
-                pieSource: [{
-                        Brand: "Audi",
-                        Amount: 10
-                    },
-                    {
-                        Brand: "Mercedes",
-                        Amount: 76
-                    },
-                    {
-                        Brand: "Fiat",
-                        Amount: 60
-                    },
-                    {
-                        Brand: "BMW",
-                        Amount: 24
-                    },
-                    {
-                        Brand: "Crysler",
-                        Amount: 40
-                    }
-                ],
-
-                gaugeValue: 2,
-
-                textFieldValue: ""
-            };
+                sleepPoints: 0
+            }
+        },
+        mounted() {
+            console.log('calculating...');
+            this.calculateSleepPoints();
+            console.log(this.sleepPoints);
         }
     };
 </script>
