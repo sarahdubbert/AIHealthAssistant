@@ -3,9 +3,9 @@ import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
-const pointStore = new Vuex.Store({
+export default new Vuex.Store({
   state: {
-    totalPoints: 0
+    totalPoints: 15
 
   },
   mutations: {

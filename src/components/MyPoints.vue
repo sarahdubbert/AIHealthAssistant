@@ -28,7 +28,7 @@
                         <TextView editable="false">
                             <FormattedString>
                                 <Label
-                                    :text="'You have slept for' + numHours" />
+                                    :text="'You have ' + this.$store.state.totalPoints" />
                             </FormattedString>
                         </TextView>
                         <GridLayout rows="*" height="1000px">
@@ -115,6 +115,9 @@
             },
             calculateSleepPoints() {
                 this.sleepPoints = this.sleepPoints + 2 * this.numHours
+            },
+            accessStore() {
+                this.$store.getPoints();
             }
         },
         data() {
