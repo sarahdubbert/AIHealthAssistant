@@ -31,61 +31,46 @@
             />
           </StackLayout>
           <StackLayout ~mainContent class="container">
-            <Button
-              @tap="onOpenDrawerTap"
-              width="10%"
+            <FlexboxLayout class="welcome text-primary">
+             
+            <Button @tap="onOpenDrawerTap" width="5"
               horizontalAlignment="left"
-            >
-              <FormattedString>
-                <Span
-                  class="fas nav-button"
-                  :text="'fa-bars' | fonticon"
-                ></Span>
-              </FormattedString>
+              class="nav-button-container fas nav-button"
+                  :text="'fa-bars' | fonticon">
             </Button>
-            <FlexboxLayout alignItems="center" class="border-bottom welcome">
-            <Label textWrap="true" color="white">
-              <FormattedString class="">
+
+            <Label class="welcome-text" horizontalAlignment="center" textWrap="true" color="white">
+              <FormattedString>
                 <Span text="Welcome," />
                 <Span text=" Sarah." fontWeight="Bold" />
-                <Span text=" Today's date is "/>
-                <Span :text=" getDate " />
               </FormattedString>
             </Label>
-            
             </FlexboxLayout>
-            <FlexBoxLayout alignItems="center" class="border-bottom">
-            <Label textWrap="true" color="white">
-              <FormattedString>
-                <Span text="Choose an activity to track: " />
-              </FormattedString>
-            </Label>
-            </FlexBoxLayout>
-            <FlexBoxLayout alignItems="center" class="border-bottom">
+            <FlexBoxLayout alignItems="center" class="">
             <Button @tap="sleepTap" class="my-button">
               <Span class="fas" :text="'fa-bed' | fonticon"></Span>
               <Span text="  Sleep"></Span>
             </Button>
             </FlexBoxLayout>
-            <FlexBoxLayout alignItems="center" class="border-bottom">
+            <FlexBoxLayout alignItems="center" class="">
             <Button @tap="exerciseTap" class="my-button">
               <Span class="fas" :text="'fa-running' | fonticon"></Span>
               <Span text="  Exercise"></Span>
             </Button>
             </FlexBoxLayout>
-            <FlexBoxLayout alignItems="center" class="border-bottom">
+            <FlexBoxLayout alignItems="center" class="">
             <Button @tap="healthyEatingTap" class="my-button">
               <Span class="fas" :text="'fa-utensils' | fonticon"></Span>
               <Span text="  Healthy Eating"></Span>
             </Button>
             </FlexBoxLayout>
-            <FlexBoxLayout alignItems="center" class="border-bottom">
+            <FlexBoxLayout alignItems="center" class="">
             <Button @tap="selfCareTap" class="my-button">
               <Span class="fas" :text="'fa-heart' | fonticon"></Span>
               <Span text="  Self Care Time"></Span>
             </Button>
             </FlexBoxLayout>
-            <FlexBoxLayout alignItems="center" class="border-bottom">
+            <FlexBoxLayout alignItems="center" class="">
             <Button @tap="relationshipsTap" class="my-button">
               <Span class="fas" :text="'fa-user-friends' | fonticon"></Span>
               <Span text="  Relationships"></Span>
@@ -184,8 +169,9 @@ export default {
 </script>
 
 <style scoped>
-  Span {
+  template {
     margin: 0;
+    font-size: 14;
   }
   .border-bottom {
     border-bottom-width: 1;
@@ -199,7 +185,7 @@ export default {
     margin-right: 10;
   }
   .my-button {
-    background-color: #4BD5DC;
+    background-color: #66a3ff;
     color: white;
     font-weight: bold;
     border-radius: 25;
@@ -208,8 +194,8 @@ export default {
     letter-spacing: 0.1;
     margin-bottom: 10;
     margin-top: 10;
-    width: 200;
-    height: 60;
+    width: 190;
+    height: 55;
     margin-left:60;
   }
   .auth-buttons {
@@ -222,7 +208,17 @@ export default {
   .logo-container {
     margin-bottom: 60;
   }
-  .container {
+  .nav-button-container {
+    margin:0;
+  }
+
+  .nav-button {
+    padding:0;
+  }
+
+  .welcome-text {
+    margin-left:30;
+    padding-top:10;
   }
 
   .welcome {

@@ -72,6 +72,7 @@ import Home from "./Home";
 import MyPoints from "./MyPoints";
 import MyProfile from "./MyProfile";
 import { TNSFancyAlert, TNSFancyAlertButton } from "nativescript-fancyalert";
+import * as utils from 'tns-core-modules/utils/utils';
 Vue.use(RadSideDrawer);
 
 export default {
