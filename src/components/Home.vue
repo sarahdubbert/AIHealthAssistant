@@ -1,6 +1,5 @@
 <template>
   <Page class="ns-dark" actionBarHidden="true">
-    <ScrollView>
     <FlexboxLayout class="full-height">
       <!-- <Image src="~/images/nsvue_logo.png" class="logo-container /> -->
       <GridLayout rows="*" height="1500px">
@@ -80,7 +79,6 @@
         </RadSideDrawer>
       </GridLayout>
     </FlexboxLayout>
-    </ScrollView>
   </Page>
 </template>
 
