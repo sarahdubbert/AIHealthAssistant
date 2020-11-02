@@ -5,24 +5,34 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    totalPoints: 15,
-    sleepGoal: 0,
-    exerciseGoal: 0,
-    eatingGoal: 0,
-    careGoal: 0,
-    relationshipGoal: 0,
+    totalPoints: 0,
+    exercisePoints: 0,
+    sleepPoints: 0,
+    eatingPoints: 0,
+    carePoints: 0,
+    relationshipPoints: 0,
+
+    sleepGoal: 8,
+    exerciseGoal: 1,
+    eatingGoal: 3,
+    careGoal: 1,
+    relationshipGoal: 2,
+    
   },
   mutations: {
     increasePointsSleep(state, numHours) {
       state.totalPoints += (2 * numHours);
+      state.sleepPoints += (2 * numHours);
     },
 
     increasePointsExercise(state, numHours) {
       state.totalPoints += (5 * numHours);
+      state.exercisePoints += (5 * numHours);
     },
 
     increasePointsEating(state, calories) {
       state.totalPoints += (4 * calories);
+      state.eatingPoints += (4 * calories);
     },
 
     updateSleepGoal(state, numHours) {

@@ -52,7 +52,7 @@
               maxLength="2"
               hint="Enter number of hours exercised today..."
             />
-            <Button text="Submit" @tap="onButtonTap" />
+            <Button class="btn btn-primary" text="Submit" @tap="onSubmit" />
           </StackLayout>
         </RadSideDrawer>
       </GridLayout>
@@ -69,12 +69,20 @@ import RadSideDrawer from "nativescript-ui-sidedrawer/vue";
 import Home from "./Home";
 import MyPoints from "./MyPoints";
 import MyProfile from "./MyProfile";
+import { TNSFancyAlert, TNSFancyAlertButton } from "nativescript-fancyalert";
 Vue.use(RadSideDrawer);
 
 export default {
   methods: {
-    onButtonTap() {
+    onSubmit() {
       this.$store.commit('increasePointsExercise', this.textFieldValue);
+      if(this.$store.state.exerciseGoal <= this.$store.state.exercisePoints) {
+        TNSFancyAlert.showSuccess(
+          "You did it, Sarah!",
+          "You have achieved your Exercise goal for the day.",
+          "Great work!"
+        );
+      }
     },
 
     onOpenDrawerTap() {

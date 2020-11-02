@@ -54,7 +54,7 @@
               maxLength="2"
               hint="Enter number of home-cooked meals eaten today..."
             />
-            <Button text="Submit" @tap="onButtonTap" />
+            <Button text="Submit" @tap="onSubmit" />
           </StackLayout>
         </RadSideDrawer>
       </GridLayout>
@@ -71,12 +71,20 @@ import RadSideDrawer from "nativescript-ui-sidedrawer/vue";
 import Home from "./Home";
 import MyPoints from "./MyPoints";
 import MyProfile from "./MyProfile";
+import { TNSFancyAlert, TNSFancyAlertButton } from "nativescript-fancyalert";
 Vue.use(RadSideDrawer);
 
 export default {
   methods: {
-    onButtonTap() {
+    onSubmit() {
       this.$store.commit('increasePointsEating', this.textFieldValue);
+      if(this.$store.state.eatingGoal <= this.$store.state.eatingPoints) {
+        TNSFancyAlert.showSuccess(
+          "You did it, Sarah!",
+          "You have achieved your Healthy Eating goal for the day.",
+          "Great work!"
+        );
+      }
     },
 
     onOpenDrawerTap() {

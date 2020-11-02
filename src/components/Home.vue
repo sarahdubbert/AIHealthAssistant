@@ -41,7 +41,6 @@
                 ></Span>
               </FormattedString>
             </Button>
-
             <TextView editable="false">
               <FormattedString>
                 <Span class="welcome" text="Welcome," />
