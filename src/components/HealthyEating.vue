@@ -1,6 +1,6 @@
 <template>
   <Page class="ns-dark" actionBarHidden="true">
-    <ScrollView>
+    <ScrollView @tap="dismissKeyboard">
       <GridLayout rows="*" height="1500px">
         <RadSideDrawer ref="drawer">
           <StackLayout ~drawerContent backgroundColor="dark">
@@ -37,7 +37,7 @@
                 ></Span>
               </FormattedString>
             </Button>
-            <TextView editable="false">
+            <Label textWrap="true" color="white">
               <FormattedString>
                 <Span text=" Did you know " fontWeight="Bold" />
                 <Span
@@ -47,7 +47,7 @@
                 <Span :text=" eatingGoal " fontWeight="Bold" />
                 <Span text=" home-cooked meals a day." />
               </FormattedString>
-            </TextView>
+            </Label>
             <TextField
               v-model="textFieldValue"
               keyboardType="number"
@@ -76,6 +76,15 @@ Vue.use(RadSideDrawer);
 
 export default {
   methods: {
+    dismissKeyboard() {
+      utils.ad.dismissSoftInput();
+    },
+
+    doneTap(args) {
+      var myTextField = args.object;
+      myTextField.dismissSoftInput();
+    },
+
     onSubmit() {
       this.$store.commit('increasePointsEating', this.textFieldValue);
       if(this.$store.state.eatingGoal <= this.$store.state.eatingPoints) {

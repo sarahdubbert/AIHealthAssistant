@@ -1,6 +1,6 @@
 <template>
   <Page class="ns-dark" actionBarHidden="true">
-    <ScrollView>
+    <ScrollView @tap="dismissKeyboard">
       <GridLayout rows="*" height="1500px">
         <RadSideDrawer ref="drawer">
           <StackLayout ~drawerContent backgroundColor="dark">
@@ -37,7 +37,7 @@
                 ></Span>
               </FormattedString>
             </Button>
-            <TextView editable="false">
+            <Label textWrap="true" color="white">
               <FormattedString>
                 <Span text=" Did you know " fontWeight="Bold" />
                 <Span
@@ -47,7 +47,7 @@
                 <Span :text=" careGoal " fontWeight="Bold" />
                 <Span text=" hour of time to yourself each day." />
               </FormattedString>
-            </TextView>
+            </Label>
             <TextField
               v-model="textFieldValue"
               keyboardType="number"
@@ -65,6 +65,7 @@
 <script>
 import RadDataForm from "nativescript-ui-dataform/vue";
 Vue.use(RadDataForm);
+import * as utils from 'tns-core-modules/utils/utils';
 
 import Vue from "nativescript-vue";
 import RadSideDrawer from "nativescript-ui-sidedrawer/vue";
@@ -75,6 +76,15 @@ Vue.use(RadSideDrawer);
 
 export default {
   methods: {
+    dismissKeyboard() {
+      utils.ad.dismissSoftInput();
+    },
+
+    doneTap(args) {
+      var myTextField = args.object;
+      myTextField.dismissSoftInput();
+    },
+
     onButtonTap() {
       console.log("Button was pressed");
     },

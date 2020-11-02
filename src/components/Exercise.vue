@@ -1,6 +1,6 @@
-<template>
+<template >
   <Page class="ns-dark" actionBarHidden="true">
-    <ScrollView>
+    <ScrollView @tap="dismissKeyboard">
       <GridLayout rows="*" height="1500px">
         <RadSideDrawer ref="drawer">
           <StackLayout ~drawerContent backgroundColor="dark">
@@ -37,22 +37,22 @@
                 ></Span>
               </FormattedString>
             </Button>
-            <TextView editable="false">
+            <Label textWrap="true" color="white">
               <FormattedString>
                 <Span text=" Did you know " fontWeight="Bold" />
-                <Span text=" that exercising improves your memory?" />
+                <Span text=" that exercising improves your memory?\n" />
                 <Span text=" Your current goal is to get " />
                 <Span :text=" exerciseGoal " fontWeight="Bold" />
                 <Span text=" hour of exercise each day." />
               </FormattedString>
-            </TextView>
+            </Label>
             <TextField
               v-model="textFieldValue"
               keyboardType="number"
               maxLength="2"
               hint="Enter number of hours exercised today..."
             />
-            <Button class="btn btn-primary" text="Submit" @tap="onSubmit" />
+            <Button class="btn btn-primary" text="Submit" @tap="onSubmit"/>
           </StackLayout>
         </RadSideDrawer>
       </GridLayout>
@@ -70,10 +70,20 @@ import Home from "./Home";
 import MyPoints from "./MyPoints";
 import MyProfile from "./MyProfile";
 import { TNSFancyAlert, TNSFancyAlertButton } from "nativescript-fancyalert";
+import * as utils from 'tns-core-modules/utils/utils';
 Vue.use(RadSideDrawer);
 
 export default {
   methods: {
+    dismissKeyboard() {
+      utils.ad.dismissSoftInput();
+    },
+
+    doneTap(args) {
+      var myTextField = args.object;
+      myTextField.dismissSoftInput();
+    },
+
     onSubmit() {
       this.$store.commit('increasePointsExercise', this.textFieldValue);
       if(this.$store.state.exerciseGoal <= this.$store.state.exercisePoints) {

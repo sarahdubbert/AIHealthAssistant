@@ -1,6 +1,6 @@
 <template>
   <Page class="ns-dark" actionBarHidden="true">
-    <ScrollView>
+    <ScrollView @tap="dismissKeyboard">
       <GridLayout rows="*" height="1500px">
         <RadSideDrawer ref="drawer">
           <StackLayout ~drawerContent backgroundColor="dark">
@@ -37,55 +37,55 @@
                 ></Span>
               </FormattedString>
             </Button>
-            <TextView editable="false">
+            <Label textWrap="true" color="white">
               <FormattedString>
                 <Span text=" Enter your goals for each category below." />
               </FormattedString>
-            </TextView>
-            <TextView editable="false">
+            </Label>
+            <Label textWrap="true" color="white">
                 <Span class="fas" :text="'fa-bed' | fonticon"></Span>
                 <Span text="  Sleep"></Span>
-            </TextView>
+            </Label>
             <TextField
               v-model="sleepGoal"
               keyboardType="number"
               maxLength="2"
               id="exerciseField"
             />
-            <TextView editable="false">
+            <Label textWrap="true" color="white">
                 <Span class="fas" :text="'fa-running' | fonticon"></Span>
                 <Span text="  Exercise"></Span>
-            </TextView>
+            </Label>
             <TextField
               v-model="exerciseGoal"
               keyboardType="number"
               maxLength="2"
               id="sleepField"
             />
-            <TextView editable="false">
+            <Label textWrap="true" color="white">
                 <Span class="fas" :text="'fa-utensils' | fonticon"></Span>
               <Span text="  Healthy Eating"></Span>
-            </TextView>
+            </Label>
             <TextField
               v-model="eatingGoal"
               keyboardType="number"
               maxLength="2"
               id="healthyEatingField"
             />
-            <TextView editable="false">
+            <Label textWrap="true" color="white">
                 <Span class="fas" :text="'fa-heart' | fonticon"></Span>
                 <Span text="  Self Care Time"></Span>
-            </TextView>
+            </Label>
             <TextField
               v-model="careGoal"
               keyboardType="number"
               maxLength="2"
               id="selfCareField"
             />
-            <TextView editable="false">
+            <Label textWrap="true" color="white">
                 <Span class="fas" :text="'fa-user-friends' | fonticon"></Span>
                 <Span text="  Relationships"></Span>
-            </TextView>
+            </Label>
             <TextField
               v-model="relationshipGoal"
               keyboardType="number"
@@ -103,6 +103,7 @@
 <script>
 import RadDataForm from "nativescript-ui-dataform/vue";
 Vue.use(RadDataForm);
+import * as utils from 'tns-core-modules/utils/utils';
 
 import Vue from "nativescript-vue";
 import RadSideDrawer from "nativescript-ui-sidedrawer/vue";
@@ -116,6 +117,15 @@ var feedback = new FeedbackPlugin.Feedback();
 
 export default {
     methods: {
+      dismissKeyboard() {
+      utils.ad.dismissSoftInput();
+    },
+
+    doneTap(args) {
+      var myTextField = args.object;
+      myTextField.dismissSoftInput();
+    },
+
     onSubmit() {
         this.$store.commit('updateSleepGoal', this.sleepGoal);
         this.$store.commit('updateExerciseGoal', this.exerciseGoal);

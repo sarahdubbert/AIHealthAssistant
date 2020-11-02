@@ -3,6 +3,7 @@ import Home from './components/Home'
 import VueDevtools from 'nativescript-vue-devtools'
 import {TNSFontIcon, fonticon} from 'nativescript-fonticon'
 
+
 if(TNS_ENV !== 'production') {
   Vue.use(VueDevtools)
 }
@@ -25,6 +26,7 @@ TNSFontIcon.paths = {
 TNSFontIcon.loadCss();
 
 Vue.filter('fonticon', fonticon);
+
 
 
 

@@ -1,6 +1,8 @@
 <template>
   <Page class="ns-dark" actionBarHidden="true">
     <ScrollView>
+    <FlexboxLayout class="full-height">
+      <!-- <Image src="~/images/nsvue_logo.png" class="logo-container /> -->
       <GridLayout rows="*" height="1500px">
         <RadSideDrawer ref="drawer">
           <StackLayout ~drawerContent backgroundColor="dark">
@@ -28,7 +30,7 @@
               @tap="onCloseDrawerTap"
             />
           </StackLayout>
-          <StackLayout ~mainContent>
+          <StackLayout ~mainContent class="container">
             <Button
               @tap="onOpenDrawerTap"
               width="10%"
@@ -41,43 +43,58 @@
                 ></Span>
               </FormattedString>
             </Button>
-            <TextView editable="false">
-              <FormattedString>
-                <Span class="welcome" text="Welcome," />
+            <FlexboxLayout alignItems="center" class="border-bottom welcome">
+            <Label textWrap="true" color="white">
+              <FormattedString class="">
+                <Span text="Welcome," />
                 <Span text=" Sarah." fontWeight="Bold" />
                 <Span text=" Today's date is "/>
                 <Span :text=" getDate " />
               </FormattedString>
-            </TextView>
-            <TextView editable="false">
+            </Label>
+            
+            </FlexboxLayout>
+            <FlexBoxLayout alignItems="center" class="border-bottom">
+            <Label textWrap="true" color="white">
               <FormattedString>
                 <Span text="Choose an activity to track: " />
               </FormattedString>
-            </TextView>
-
-            <Button @tap="sleepTap">
+            </Label>
+            </FlexBoxLayout>
+            <FlexBoxLayout alignItems="center" class="border-bottom">
+            <Button @tap="sleepTap" class="my-button">
               <Span class="fas" :text="'fa-bed' | fonticon"></Span>
               <Span text="  Sleep"></Span>
             </Button>
-            <Button @tap="exerciseTap">
+            </FlexBoxLayout>
+            <FlexBoxLayout alignItems="center" class="border-bottom">
+            <Button @tap="exerciseTap" class="my-button">
               <Span class="fas" :text="'fa-running' | fonticon"></Span>
               <Span text="  Exercise"></Span>
             </Button>
-            <Button @tap="healthyEatingTap">
+            </FlexBoxLayout>
+            <FlexBoxLayout alignItems="center" class="border-bottom">
+            <Button @tap="healthyEatingTap" class="my-button">
               <Span class="fas" :text="'fa-utensils' | fonticon"></Span>
               <Span text="  Healthy Eating"></Span>
             </Button>
-            <Button @tap="selfCareTap">
+            </FlexBoxLayout>
+            <FlexBoxLayout alignItems="center" class="border-bottom">
+            <Button @tap="selfCareTap" class="my-button">
               <Span class="fas" :text="'fa-heart' | fonticon"></Span>
               <Span text="  Self Care Time"></Span>
             </Button>
-            <Button @tap="relationshipsTap">
+            </FlexBoxLayout>
+            <FlexBoxLayout alignItems="center" class="border-bottom">
+            <Button @tap="relationshipsTap" class="my-button">
               <Span class="fas" :text="'fa-user-friends' | fonticon"></Span>
               <Span text="  Relationships"></Span>
             </Button>
+            </FlexBoxLayout>
           </StackLayout>
         </RadSideDrawer>
       </GridLayout>
+    </FlexboxLayout>
     </ScrollView>
   </Page>
 </template>
@@ -98,6 +115,7 @@ Vue.use(RadSideDrawer);
 export default {
   name: "Home",
   methods: {
+
     onButtonTap() {
       console.log("Button was pressed");
     },
@@ -166,7 +184,48 @@ export default {
 </script>
 
 <style scoped>
-.description-label {
-  margin-bottom: 15;
-}
+  Span {
+    margin: 0;
+  }
+  .border-bottom {
+    border-bottom-width: 1;
+    border-bottom-color: white;
+  }
+  .form-input {
+    color: white;
+    placeholder-color: white;
+  }
+  .icon-margin {
+    margin-right: 10;
+  }
+  .my-button {
+    background-color: #4BD5DC;
+    color: white;
+    font-weight: bold;
+    border-radius: 25;
+    padding-top: 14;
+    padding-bottom: 14;
+    letter-spacing: 0.1;
+    margin-bottom: 10;
+    margin-top: 10;
+    width: 200;
+    height: 60;
+    margin-left:60;
+  }
+  .auth-buttons {
+    color: white;
+    font-size: 14;
+  }
+  /* .full-height {
+    height: 100%;
+  } */
+  .logo-container {
+    margin-bottom: 60;
+  }
+  .container {
+  }
+
+  .welcome {
+    margin-bottom:20;
+  }
 </style>

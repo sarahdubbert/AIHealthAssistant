@@ -32,11 +32,11 @@
                 ></Span>
               </FormattedString>
             </Button>
-            <TextView editable="false">
+            <Label textWrap="true" color="white">
               <FormattedString>
                 <Label :text="'You have ' + this.$store.state.totalPoints" />
               </FormattedString>
-            </TextView>
+            </Label>
             <GridLayout rows="*" height="1000px">
               <RadCartesianChart row="0" style="font-size: 12;">
                 <LineSeries
@@ -63,6 +63,7 @@
 
     import RadRadialGauge from "nativescript-ui-gauge/vue";
     Vue.use(RadRadialGauge);
+    import * as utils from 'tns-core-modules/utils/utils';
 
     import Vue from "nativescript-vue";
     import RadSideDrawer from "nativescript-ui-sidedrawer/vue";
@@ -72,6 +73,7 @@
     import SelfCare from "./SelfCare";
     import Relationships from "./Relationships";
     import Home from "./Home";
+    
 
     Vue.use(RadSideDrawer);
 
