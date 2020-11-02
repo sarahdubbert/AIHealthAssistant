@@ -182,27 +182,27 @@ export default {
   .icon-margin {
     margin-right: 10;
   }
-  .my-button {
-    background-color: #66a3ff;
-    color: white;
-    font-weight: bold;
-    border-radius: 25;
-    padding-top: 14;
-    padding-bottom: 14;
-    letter-spacing: 0.1;
-    margin-bottom: 10;
-    margin-top: 10;
-    width: 190;
-    height: 55;
-    margin-left:60;
-  }
+
   .auth-buttons {
     color: white;
     font-size: 14;
   }
-  /* .full-height {
-    height: 100%;
-  } */
+  
+  .my-button {
+  background-color: #66a3ff;
+  color: white;
+  font-weight: bold;
+  border-radius: 25;
+  padding-top: 14;
+  padding-bottom: 14;
+  letter-spacing: 0.1;
+  margin-bottom: 10;
+  margin-top: 10;
+  width: 190;
+  height: 55;
+  margin-left: 60;
+  }
+
   .logo-container {
     margin-bottom: 60;
   }

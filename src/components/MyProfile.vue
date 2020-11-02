@@ -24,11 +24,10 @@
               text="Close"
               color="white"
               padding="10"
-              style="horizontal-align: center"
               @tap="onCloseDrawerTap"
             />
           </StackLayout>
-          <StackLayout ~mainContent>
+          <StackLayout ~mainContent class="container">
             <Button @tap="homeTap" width="10%" horizontalAlignment="left">
               <FormattedString>
                 <Span
@@ -37,62 +36,78 @@
                 ></Span>
               </FormattedString>
             </Button>
-            <Label textWrap="true" color="white">
+            <Label class="description-label" horizontalAlignment="center" textWrap="true" color="white">
               <FormattedString>
                 <Span text=" Enter your goals for each category below." />
               </FormattedString>
             </Label>
-            <Label textWrap="true" color="white">
-                <Span class="fas" :text="'fa-bed' | fonticon"></Span>
-                <Span text="  Sleep"></Span>
-            </Label>
-            <TextField
-              v-model="sleepGoal"
-              keyboardType="number"
-              maxLength="2"
-              id="exerciseField"
-            />
-            <Label textWrap="true" color="white">
+            <FlexBoxLayout alignItems="center" class="flex-container">
+              <Label textWrap="true" color="white" class="label-text">
+                  <Span class="fas" :text="'fa-bed' | fonticon"></Span>
+                  <Span text="  Sleep"></Span>
+              </Label>
+              <TextField
+                v-model="sleepGoal"
+                keyboardType="number"
+                maxLength="2"
+                id="sleepField"
+                class="text-field"
+                horizontalAlignment="right"
+              />
+            </FlexBoxLayout>
+            <FlexBoxLayout alignItems="center" class="flex-container">
+              <Label textWrap="true" color="white" class="label-text">
                 <Span class="fas" :text="'fa-running' | fonticon"></Span>
                 <Span text="  Exercise"></Span>
-            </Label>
-            <TextField
-              v-model="exerciseGoal"
-              keyboardType="number"
-              maxLength="2"
-              id="sleepField"
-            />
-            <Label textWrap="true" color="white">
-                <Span class="fas" :text="'fa-utensils' | fonticon"></Span>
-              <Span text="  Healthy Eating"></Span>
-            </Label>
-            <TextField
-              v-model="eatingGoal"
-              keyboardType="number"
-              maxLength="2"
-              id="healthyEatingField"
-            />
-            <Label textWrap="true" color="white">
-                <Span class="fas" :text="'fa-heart' | fonticon"></Span>
-                <Span text="  Self Care Time"></Span>
-            </Label>
-            <TextField
-              v-model="careGoal"
-              keyboardType="number"
-              maxLength="2"
-              id="selfCareField"
-            />
-            <Label textWrap="true" color="white">
-                <Span class="fas" :text="'fa-user-friends' | fonticon"></Span>
-                <Span text="  Relationships"></Span>
-            </Label>
-            <TextField
-              v-model="relationshipGoal"
-              keyboardType="number"
-              maxLength="2"
-              id="relationshipsField"
-            />
-            <Button text="Update Goals" @tap="onSubmit" />
+              </Label>
+              <TextField
+                v-model="exerciseGoal"
+                keyboardType="number"
+                maxLength="2"
+                id="exerciseField"
+                class="text-field"
+              />
+            </FlexBoxLayout>
+            <FlexBoxLayout alignItems="center" class="flex-container">
+              <Label textWrap="true" color="white" class="label-text">
+                  <Span class="fas" :text="'fa-utensils' | fonticon"></Span>
+                <Span text="  Healthy Eating"></Span>
+              </Label>
+              <TextField
+                v-model="eatingGoal"
+                keyboardType="number"
+                maxLength="2"
+                id="healthyEatingField"
+                class="text-field"
+              />
+            </FlexBoxLayout>
+            <FlexBoxLayout alignItems="center" class="flex-container">
+              <Label textWrap="true" color="white" class="label-text">
+                  <Span class="fas" :text="'fa-heart' | fonticon"></Span>
+                  <Span text="  Self Care Time"></Span>
+              </Label>
+              <TextField
+                v-model="careGoal"
+                keyboardType="number"
+                maxLength="2"
+                id="selfCareField"
+                class="text-field"
+              />
+            </FlexBoxLayout>
+            <FlexBoxLayout alignItems="center" class="flex-container">
+              <Label textWrap="true" color="white" class="label-text">
+                  <Span class="fas" :text="'fa-user-friends' | fonticon"></Span>
+                  <Span text="  Relationships"></Span>
+              </Label>
+              <TextField
+                v-model="relationshipGoal"
+                keyboardType="number"
+                maxLength="2"
+                id="relationshipsField"
+                class="text-field"
+              />
+            </FlexBoxLayout>
+            <Button text="Update Goals" @tap="onSubmit" class="my-button"/>
           </StackLayout>
         </RadSideDrawer>
       </GridLayout>
@@ -162,7 +177,7 @@ export default {
 
       sleepGoal: this.$store.state.sleepGoal,
       exerciseGoal: this.$store.state.exerciseGoal,
-      eatingGoal: this.$store.state.eatingGOal,
+      eatingGoal: this.$store.state.eatingGoal,
       careGoal: this.$store.state.careGoal,
       relationshipGoal: this.$store.state.relationshipGoal,
     };
@@ -177,7 +192,41 @@ export default {
   margin: 15;
 }
 
+.container {
+  padding: 0 15;
+  font-size: 14;
+}
+
 .description-label {
   margin-bottom: 15;
+}
+
+.my-button {
+  background-color: #66a3ff;
+  color: white;
+  font-weight: bold;
+  border-radius: 25;
+  padding-top: 14;
+  padding-bottom: 14;
+  letter-spacing: 0.1;
+  margin-bottom: 10;
+  margin-top: 0;
+  width: 190;
+  height: 55;
+  margin-left: 30;
+  }
+
+.text-field {
+  width: 20;
+  height: 35;
+  font-size: 14;
+}
+
+.flex-container {
+  margin-bottom: 10;
+}
+
+.label-text {
+  padding-top: 10;
 }
 </style>
