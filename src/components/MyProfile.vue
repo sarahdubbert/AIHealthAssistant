@@ -92,7 +92,7 @@
               maxLength="2"
               id="relationshipsField"
             />
-            <Button text="Submit" @tap="onSubmit" />
+            <Button text="Update Goals" @tap="onSubmit" />
           </StackLayout>
         </RadSideDrawer>
       </GridLayout>
@@ -111,6 +111,9 @@ import MyPoints from "./MyPoints";
 import MyProfile from "./MyProfile";
 Vue.use(RadSideDrawer);
 
+var FeedbackPlugin = require("nativescript-feedback");
+var feedback = new FeedbackPlugin.Feedback();
+
 export default {
     methods: {
     onSubmit() {
@@ -119,7 +122,9 @@ export default {
         this.$store.commit('updateEatingGoal', this.eatingGoal);
         this.$store.commit('updateCareGoal', this.careGoal);
         this.$store.commit('updateRelationshipGoal', this.relationshipGoal);
-        console.log("updated goals");
+        feedback.show({
+            message: "Success! Your goals have been updated."
+        });
     },
 
     onOpenDrawerTap() {
@@ -145,11 +150,11 @@ export default {
     return {
       isBusy: true,
 
-      sleepGoal: 0,
-      exerciseGoal: 0,
-      eatingGoal: 0,
-      careGoal: 0,
-      relationshipGoal: 0,
+      sleepGoal: this.$store.state.sleepGoal,
+      exerciseGoal: this.$store.state.exerciseGoal,
+      eatingGoal: this.$store.state.eatingGOal,
+      careGoal: this.$store.state.careGoal,
+      relationshipGoal: this.$store.state.relationshipGoal,
     };
   },
 };

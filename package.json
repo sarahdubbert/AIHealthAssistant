@@ -11,6 +11,7 @@
     "@vue/devtools": "^5.3.3",
     "nativescript": "^7.0.11",
     "nativescript-fancyalert": "^3.0.9",
+    "nativescript-feedback": "^2.0.0",
     "nativescript-fonticon": "^2.0.2",
     "nativescript-material-textfield": "^3.3.1",
     "nativescript-pulltorefresh": "^2.3.0",
