@@ -18,7 +18,7 @@
                 padding="10"
                 @tap="myPointsTap"
               />
-              <Label color="white" text="My Profile" @tap="myProfileTap" padding="10" />
+              <Label color="white" text="My Goals" @tap="myProfileTap" padding="10" />
             </StackLayout>
             <Label
               text="Close"

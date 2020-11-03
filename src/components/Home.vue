@@ -19,7 +19,7 @@
                 @tap="myPointsTap"
                 padding="10"
               />
-              <Label color="white" text="My Profile" @tap="myProfileTap" padding="10" />
+              <Label color="white" text="My Goals" @tap="myProfileTap" padding="10" />
             </StackLayout>
             <Label
               text="Close"
@@ -31,19 +31,22 @@
           </StackLayout>
           <StackLayout ~mainContent class="container">
             <FlexboxLayout class="welcome text-primary">
-             
-            <Button @tap="onOpenDrawerTap" width="5"
-              horizontalAlignment="left"
-              class="nav-button-container fas nav-button"
-                  :text="'fa-bars' | fonticon">
-            </Button>
-
-            <Label class="welcome-text" horizontalAlignment="center" textWrap="true" color="white">
-              <FormattedString>
-                <Span text="Welcome," />
-                <Span text=" Sarah." fontWeight="Bold" />
-              </FormattedString>
-            </Label>
+              <Button @tap="onOpenDrawerTap" width="5"
+                horizontalAlignment="left"
+                class="nav-button-container fas nav-button"
+                    :text="'fa-bars' | fonticon">
+              </Button>
+              <Label class="welcome-text" horizontalAlignment="center" textWrap="true" color="white">
+                <FormattedString>
+                  <Span text="Welcome," />
+                  <Span text=" Sarah." fontWeight="Bold" />
+                </FormattedString>
+              </Label>
+              <Button @tap="showSuggestion" width="5"
+                horizontalAlignment="right"
+                class="nav-button-container fas nav-button bulb-icon"
+                    :text="'fa-lightbulb' | fonticon">
+              </Button>
             </FlexboxLayout>
             <FlexBoxLayout alignItems="center" class="">
             <Button @tap="sleepTap" class="my-button">
@@ -95,6 +98,7 @@ import MyProfile from "./MyProfile";
 
 Vue.use(RadSideDrawer);
 
+
 export default {
   name: "Home",
   methods: {
@@ -141,6 +145,50 @@ export default {
     onCloseDrawerTap() {
       this.$refs.drawer.nativeView.closeDrawer();
     },
+
+    showSuggestion() {
+      const toTwoDigits = num => num < 10 ? '0' + num : num;
+      let today = new Date();
+      let hour = today.getHours();
+      let minutes = toTwoDigits(today.getMinutes());
+
+      if(hour >=5 && hour <=8){
+        alert({
+          title: "It's currently " + `${hour}:${minutes}`,
+          message: "It's a great time to do some self care.",
+          okButtonText: "Keep Earning Points"
+        }).then(() => {
+        console.log("Alert dialog closed");
+      });
+      }
+      if(hour >=9 && hour <=16){
+        alert({
+          title: "It's currently " + `${hour}:${minutes}`,
+          message: "It's a great time to get in some exercise.",
+          okButtonText: "Keep Earning Points"
+        }).then(() => {
+        console.log("Alert dialog closed");
+      });
+      }
+      if(hour >=17 && hour <=20){
+        alert({
+          title: "It's currently " + `${hour}:${minutes}`,
+          message: "It's a great time to spend time with a loved one.",
+          okButtonText: "Keep Earning Points"
+        }).then(() => {
+        console.log("Alert dialog closed");
+      });
+      }
+      if((hour >=21 && hour <=24)  || hour <=4){
+        alert({
+          title: "It's currently " + `${hour}:${minutes}`,
+          message: "It's a great time to get some sleep.",
+          okButtonText: "Keep Earning Points"
+        }).then(() => {
+        console.log("Alert dialog closed");
+      });
+      }
+    },
   },
 
   computed: {
@@ -157,24 +205,25 @@ export default {
   data() {
     return {
       textFieldValue: "",
-
+      homeAlert:false,
       mainContentText:
         "SideDrawer for NativeScript can be easily setup in the XML definition of your page by defining main- and drawer-content. The component" +
         " has a default transition and position and also exposes notifications related to changes in its state. Swipe from left to open side drawer.",
     };
   },
+    
 };
 </script>
 
 <style scoped>
-  @font-face {
+  /* @font-face {
     font-family: "OpenSans-Regular";
     src: url('./../fonts/OpenSans-Regular.ttf');
-  }
-  @import url('https://fonts.googleapis.com/css?family=OpenSans-Regular');
+  } */
+  /* @import url('https://fonts.googleapis.com/css?family=OpenSans-Regular'); */
   template {
     margin: 0;
-    font-size: 14;
+    font-size: 16;
   }
   .border-bottom {
     border-bottom-width: 1;
@@ -187,42 +236,39 @@ export default {
   .icon-margin {
     margin-right: 10;
   }
-
-  .auth-buttons {
-    color: white;
-    font-size: 14;
-  }
   
   .my-button {
-  background-color: #66a3ff;
-  color: white;
-  font-weight: bold;
-  border-radius: 25;
-  padding-top: 14;
-  padding-bottom: 14;
-  margin-bottom: 10;
-  margin-top: 10;
-  width: 190;
-  height: 55;
-  margin-left: 60;
-  font-family:'OpenSans-Regular' !important;
+    background-color: #66a3ff;
+    color: white;
+    font-weight: bold;
+    border-radius: 25;
+    padding-top: 14;
+    padding-bottom: 14;
+    margin-bottom: 10;
+    margin-top: 10;
+    width: 190;
+    height: 55;
+    margin-left: 60;
+    /* font-family:'OpenSans-Regular' !important; */
   }
 
   .logo-container {
     margin-bottom: 60;
   }
-  .nav-button-container {
-    margin:0;
-  }
 
   .nav-button {
     padding:0;
+    margin:0;
+  }
+
+  .bulb-icon {
+    margin-left: 20;
   }
 
   .welcome-text {
     margin-left:25;
-    padding-top:10;
-    font-family:'OpenSans-Regular' !important;
+    padding-top:15;
+    /* font-family:'OpenSans-Regular' !important; */
   }
 
   .welcome {

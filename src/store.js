@@ -17,6 +17,8 @@ export default new Vuex.Store({
     eatingGoal: 3,
     careGoal: 1,
     relationshipGoal: 2,
+
+    homeAlert: false,
     
   },
   mutations: {
@@ -55,6 +57,10 @@ export default new Vuex.Store({
       state.relationshipGoal = numHours;
     },
 
+    updateHomeAlert(state, alert) {
+      state.homeAlert = alert;
+    },
+
     
 
   },
@@ -65,6 +71,10 @@ export default new Vuex.Store({
 
     getExerciseGoal(state) {
       return state.exerciseGoal;
+    },
+
+    getHomeGoal(state) {
+      return state.homeGoal;
     },
   },
   actions: {

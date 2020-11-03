@@ -13,7 +13,7 @@
             <StackLayout>
               <Label color="white" text="Home" padding="10" @tap="homeTap" />
               <Label text="My Points" padding="10" backgroundColor="white" />
-              <Label color="white" text="My Profile" @tap="myProfileTap" padding="10" />
+              <Label color="white" text="My Goals" @tap="myProfileTap" padding="10" />
             </StackLayout>
             <Label
               text="Close"

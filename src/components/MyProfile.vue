@@ -1,7 +1,6 @@
 <template>
   <Page class="ns-dark" actionBarHidden="true">
-    <ScrollView @tap="dismissKeyboard">
-      <GridLayout rows="*" height="1500px">
+      <GridLayout @tap="dismissKeyboard" rows="*" height="1500px">
         <RadSideDrawer ref="drawer">
           <StackLayout ~drawerContent backgroundColor="dark">
             <StackLayout
@@ -18,7 +17,7 @@
                 padding="10"
                 @tap="myPointsTap"
               />
-              <Label color="white" text="My Profile" padding="10" />
+              <Label color="white" text="My Goals" padding="10" />
             </StackLayout>
             <Label
               text="Close"
@@ -28,19 +27,17 @@
             />
           </StackLayout>
           <StackLayout ~mainContent class="container">
-            <Button @tap="homeTap" width="10%" horizontalAlignment="left">
-              <FormattedString>
-                <Span
-                  class="fas nav-button"
-                  :text="'fa-chevron-left' | fonticon"
-                ></Span>
-              </FormattedString>
-            </Button>
-            <Label class="description-label" horizontalAlignment="center" textWrap="true" color="white">
-              <FormattedString>
-                <Span text=" Enter your goals for each category below." />
-              </FormattedString>
-            </Label>
+            <FlexBoxLayout class="welcome  text-primary">
+              <Button @tap="homeTap" width="5" horizontalAlignment="left"
+              class="fas nav-button"
+              :text="'fa-chevron-left' | fonticon">
+              </Button>
+              <Label class="welcome-text" horizontalAlignment="center" textWrap="true" color="white">
+                <FormattedString>
+                  <Span text="My Goals" />
+                </FormattedString>
+              </Label>
+            </FlexBoxLayout>
             <FlexBoxLayout alignItems="center" class="flex-container">
               <Label textWrap="true" color="white" class="label-text">
                   <Span class="fas" :text="'fa-bed' | fonticon"></Span>
@@ -111,7 +108,6 @@
           </StackLayout>
         </RadSideDrawer>
       </GridLayout>
-    </ScrollView>
   </Page>
 </template>
 
@@ -129,6 +125,7 @@ Vue.use(RadSideDrawer);
 
 var FeedbackPlugin = require("nativescript-feedback");
 var feedback = new FeedbackPlugin.Feedback();
+var color = require("color");
 
 export default {
     methods: {
@@ -148,6 +145,8 @@ export default {
         this.$store.commit('updateCareGoal', this.careGoal);
         this.$store.commit('updateRelationshipGoal', this.relationshipGoal);
         feedback.show({
+            messageSize: 14,
+            backgroundColor: new color.Color("#66a3ff"),
             message: "Success! Your goals have been updated."
         });
     },
@@ -186,12 +185,15 @@ export default {
 </script>
 
 <style scoped>
-@font-face {
+/* @font-face {
     font-family: "OpenSans-Regular";
     src: url('./../fonts/OpenSans-Regular.ttf');
   }
-@import url('https://fonts.googleapis.com/css?family=OpenSans-Regular');
-
+@import url('https://fonts.googleapis.com/css?family=OpenSans-Regular'); */
+template {
+    margin: 0;
+    font-size: 16;
+}
 .home-panel {
   vertical-align: center;
   font-size: 20;
@@ -200,18 +202,28 @@ export default {
 
 .container {
   padding: 0 15;
-  font-size: 14;
-  font-family: 'OpenSans-Regular';
+  font-size: 16;
+  /* font-family: 'OpenSans-Regular'; */
 }
 
 .description-label {
-  margin-bottom: 15;
+  margin-bottom: 10;
 }
 
 .border-bottom {
     border-bottom-width: 1;
     border-bottom-color: white;
   }
+
+.welcome-text {
+    margin-left:25;
+    padding-top:15;
+  }
+
+.nav-button {
+  padding:0;
+  margin:0;
+}
 
 .my-button {
   background-color: #66a3ff;
@@ -222,11 +234,16 @@ export default {
   padding-bottom: 14;
   letter-spacing: 0.1;
   margin-bottom: 10;
-  margin-top: 0;
+  margin-top: 20;
   width: 190;
   height: 55;
   margin-left: 25;
   }
+
+.welcome {
+  margin-left:25;
+  padding-top:15;
+}
 
 .text-field {
   width: 20;
