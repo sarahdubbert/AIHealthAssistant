@@ -28,8 +28,9 @@
               @tap="onCloseDrawerTap"
             />
           </StackLayout>
-          <StackLayout ~mainContent>
-            <Button @tap="homeTap" width="10%" horizontalAlignment="left">
+          <StackLayout ~mainContent class="container">
+            <FlexBoxLayout alignItems="center" class="title">
+              <Button @tap="homeTap" width="10%" horizontalAlignment="left">
               <FormattedString>
                 <Span
                   class="fas nav-button"
@@ -37,24 +38,52 @@
                 ></Span>
               </FormattedString>
             </Button>
-            <Label textWrap="true" color="white">
-              <FormattedString>
-                <Span text=" Did you know " fontWeight="Bold" />
-                <Span
-                  text=" that getting enough sleep improves your concentration and focus?"
-                />
-                <Span text=" Your current goal is to get " />
-                <Span :text=" sleepGoal " fontWeight="Bold" />
-                <Span text=" hours of sleep each night." />
-              </FormattedString>
-            </Label>
-            <TextField
-              v-model="textFieldValue"
-              keyboardType="number"
-              maxLength="2"
-              hint="Enter number of hours slept last night..."
-            />
-            <Button text="Submit" @tap="onSubmit" />
+              <Label class="title" textWrap="true" horizontalAlignment="right" color="white">
+                  <FormattedString>
+                    <Span text="Sleep"/>
+                  </FormattedString>
+                </Label>
+            </FlexBoxLayout>
+            <FlexBoxLayout alignItems="center" class="fun-fact">
+              <Label textWrap="true" color="white">
+                <FormattedString>
+                  <Span text="Did you know " fontWeight="Bold" />
+                  <Span
+                    text="that getting enough sleep improves your concentration and focus?"
+                  />
+                </FormattedString>
+              </Label>
+            </FlexBoxLayout>
+            <FlexBoxLayout alignItems="center" class="current-goal">
+              <Label textWrap="true" color="white">
+                <FormattedString>
+                  <Span text="Your current goal is to get " />
+                  <Span :text=" sleepGoal " fontWeight="Bold" />
+                  <Span text=" hours of sleep each night." />
+                </FormattedString>
+              </Label>
+            <FlexBoxLayout alignItems="center" class="progress">
+              <Progress :value="progressValue" maxValue="this.$store.state.sleepGoal" 
+              color="white"/>
+            </FlexBoxLayout>
+            </FlexBoxLayout>
+            <FlexBoxLayout alignItems="center" class="enter-hours">
+              <Label textWrap="true" color="white">
+                <FormattedString>
+                  <Span text="Enter Hours " />
+                </FormattedString>
+              </Label>
+              <TextField
+                v-model="textFieldValue"
+                keyboardType="number"
+                maxLength="2"
+                hint="enter here"
+                class="text-field border-bottom"
+              />
+            </FlexBoxLayout>
+            <FlexBoxLayout alignItems="center" class="submit-button">
+              <Button text="Submit" @tap="onSubmit" class="my-button" />
+            </FlexBoxLayout>
           </StackLayout>
         </RadSideDrawer>
       </GridLayout>
@@ -129,6 +158,9 @@ export default {
     sleepGoal() {
       return this.$store.state.sleepGoal;
     },
+    progressValue() {
+      return 5;
+    }
   },
 
   data() {
@@ -155,4 +187,58 @@ export default {
 .description-label {
   margin-bottom: 15;
 }
+
+.border-bottom {
+    border-bottom-width: 1;
+    border-bottom-color: white;
+  }
+.container {
+  font-size: 16;
+  padding: 0 15;
+}
+
+.my-button {
+  background-color: #66a3ff;
+  color: white;
+  font-weight: bold;
+  border-radius: 25;
+  padding-top: 14;
+  padding-bottom: 14;
+  letter-spacing: 0.1;
+  margin-bottom: 10;
+  margin-top: 0;
+  width: 190;
+  height: 55;
+  margin-left: 30;
+  }
+
+  .text-field {
+    font-size: 14;
+    margin-bottom: 20;
+  }
+
+  .title {
+    text-align: center;
+    font-size: 28;
+  }
+
+  .fun-fact {
+    font-size:12;
+  }
+
+  .current-goal {
+    margin-bottom: 10;
+  }
+
+  .progress {
+    margin-bottom: 10;
+  }
+
+  .enter-hours {
+    margin-bottom: 10;
+  }
+
+  .submit-button {
+    margin-top: 10;
+  }
 </style>

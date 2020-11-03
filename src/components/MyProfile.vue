@@ -51,7 +51,7 @@
                 keyboardType="number"
                 maxLength="2"
                 id="sleepField"
-                class="text-field"
+                class="text-field border-bottom"
                 horizontalAlignment="right"
               />
             </FlexBoxLayout>
@@ -65,7 +65,7 @@
                 keyboardType="number"
                 maxLength="2"
                 id="exerciseField"
-                class="text-field"
+                class="text-field border-bottom"
               />
             </FlexBoxLayout>
             <FlexBoxLayout alignItems="center" class="flex-container">
@@ -78,7 +78,7 @@
                 keyboardType="number"
                 maxLength="2"
                 id="healthyEatingField"
-                class="text-field"
+                class="text-field border-bottom"
               />
             </FlexBoxLayout>
             <FlexBoxLayout alignItems="center" class="flex-container">
@@ -91,7 +91,7 @@
                 keyboardType="number"
                 maxLength="2"
                 id="selfCareField"
-                class="text-field"
+                class="text-field border-bottom"
               />
             </FlexBoxLayout>
             <FlexBoxLayout alignItems="center" class="flex-container">
@@ -104,7 +104,7 @@
                 keyboardType="number"
                 maxLength="2"
                 id="relationshipsField"
-                class="text-field"
+                class="text-field border-bottom"
               />
             </FlexBoxLayout>
             <Button text="Update Goals" @tap="onSubmit" class="my-button"/>
@@ -186,6 +186,12 @@ export default {
 </script>
 
 <style scoped>
+@font-face {
+    font-family: "OpenSans-Regular";
+    src: url('./../fonts/OpenSans-Regular.ttf');
+  }
+@import url('https://fonts.googleapis.com/css?family=OpenSans-Regular');
+
 .home-panel {
   vertical-align: center;
   font-size: 20;
@@ -195,11 +201,17 @@ export default {
 .container {
   padding: 0 15;
   font-size: 14;
+  font-family: 'OpenSans-Regular';
 }
 
 .description-label {
   margin-bottom: 15;
 }
+
+.border-bottom {
+    border-bottom-width: 1;
+    border-bottom-color: white;
+  }
 
 .my-button {
   background-color: #66a3ff;
@@ -213,7 +225,7 @@ export default {
   margin-top: 0;
   width: 190;
   height: 55;
-  margin-left: 30;
+  margin-left: 25;
   }
 
 .text-field {

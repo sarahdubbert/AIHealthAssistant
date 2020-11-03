@@ -167,6 +167,11 @@ export default {
 </script>
 
 <style scoped>
+  @font-face {
+    font-family: "OpenSans-Regular";
+    src: url('./../fonts/OpenSans-Regular.ttf');
+  }
+  @import url('https://fonts.googleapis.com/css?family=OpenSans-Regular');
   template {
     margin: 0;
     font-size: 14;
@@ -195,12 +200,12 @@ export default {
   border-radius: 25;
   padding-top: 14;
   padding-bottom: 14;
-  letter-spacing: 0.1;
   margin-bottom: 10;
   margin-top: 10;
   width: 190;
   height: 55;
   margin-left: 60;
+  font-family:'OpenSans-Regular' !important;
   }
 
   .logo-container {
@@ -215,8 +220,9 @@ export default {
   }
 
   .welcome-text {
-    margin-left:30;
+    margin-left:25;
     padding-top:10;
+    font-family:'OpenSans-Regular' !important;
   }
 
   .welcome {
