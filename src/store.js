@@ -37,6 +37,16 @@ export default new Vuex.Store({
       state.eatingPoints += (4 * calories);
     },
 
+    increasePointsRelationships(state, hours) {
+      state.totalPoints += (6 * hours);
+      state.relationshipPoints += (6 * hours);
+    },
+
+    increasePointsCare(state, hours) {
+      state.totalPoints += (6 * hours);
+      state.carePoints += (6 * hours);
+    },
+
     updateSleepGoal(state, numHours) {
       state.sleepGoal = numHours;
     },

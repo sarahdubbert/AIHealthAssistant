@@ -3,6 +3,6 @@
         <bitmap android:gravity="fill" android:src="@drawable/blue_background" />
     </item>
     <item>
-        <bitmap android:gravity="center" android:src="@drawable/sun" />
+        <bitmap android:gravity="center" android:src="@drawable/serenity" />
     </item>
 </layer-list>

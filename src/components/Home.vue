@@ -147,6 +147,7 @@ export default {
     },
 
     showSuggestion() {
+      console.log('suggestion!');
       const toTwoDigits = num => num < 10 ? '0' + num : num;
       let today = new Date();
       let hour = today.getHours();
@@ -229,10 +230,12 @@ export default {
     border-bottom-width: 1;
     border-bottom-color: white;
   }
+  
   .form-input {
     color: white;
     placeholder-color: white;
   }
+
   .icon-margin {
     margin-right: 10;
   }

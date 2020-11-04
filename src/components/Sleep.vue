@@ -101,7 +101,6 @@ import RadSideDrawer from "nativescript-ui-sidedrawer/vue";
 import Home from "./Home";
 import MyPoints from "./MyPoints";
 import MyProfile from "./MyProfile";
-import { TNSFancyAlert, TNSFancyAlertButton } from "nativescript-fancyalert";
 Vue.use(RadSideDrawer);
 
 export default {
@@ -118,11 +117,13 @@ export default {
     onSubmit() {
       this.$store.commit('increasePointsSleep', this.textFieldValue);
       if(this.$store.state.sleepGoal <= this.$store.state.sleepPoints) {
-        TNSFancyAlert.showSuccess(
-          "You did it, Sarah!",
-          "You have achieved your Sleep goal for the day.",
-          "Great work!"
-        );
+        alert({
+          title: "You did it, Sarah!",
+          message: "You have achieved your Sleep goal for the day.",
+          okButtonText: "Keep Earning Points"
+        }).then(() => {
+        console.log("Alert dialog closed");
+      });
       }
     },
 

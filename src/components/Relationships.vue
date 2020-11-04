@@ -54,7 +54,7 @@
               maxLength="2"
               hint="Enter number of hours that you spent with a loved one today..."
             />
-            <Button text="Submit" @tap="onButtonTap" />
+            <Button text="Submit" @tap="onSubmit" />
           </StackLayout>
         </RadSideDrawer>
       </GridLayout>
@@ -85,8 +85,17 @@ export default {
       myTextField.dismissSoftInput();
     },
 
-    onButtonTap() {
-      console.log("Button was pressed");
+    onSubmit() {
+      this.$store.commit('increasePointsRelationships', this.textFieldValue);
+      if(this.$store.state.relationshipGoal <= this.$store.state.relationshipPoints) {
+        alert({
+          title: "You did it, Sarah!",
+          message: "You have achieved your Relationships goal for the day.",
+          okButtonText: "Keep Earning Points"
+        }).then(() => {
+        console.log("Alert dialog closed");
+      });
+      }
     },
 
     onOpenDrawerTap() {
@@ -116,7 +125,6 @@ export default {
   data() {
     return {
       isBusy: true,
-
       selectedListPickerIndex: 0,
 
       currentHour: new Date().getHours(),

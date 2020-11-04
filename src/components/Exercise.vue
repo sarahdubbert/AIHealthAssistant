@@ -69,7 +69,6 @@ import RadSideDrawer from "nativescript-ui-sidedrawer/vue";
 import Home from "./Home";
 import MyPoints from "./MyPoints";
 import MyProfile from "./MyProfile";
-import { TNSFancyAlert, TNSFancyAlertButton } from "nativescript-fancyalert";
 import * as utils from 'tns-core-modules/utils/utils';
 Vue.use(RadSideDrawer);
 
@@ -87,11 +86,13 @@ export default {
     onSubmit() {
       this.$store.commit('increasePointsExercise', this.textFieldValue);
       if(this.$store.state.exerciseGoal <= this.$store.state.exercisePoints) {
-        TNSFancyAlert.showSuccess(
-          "You did it, Sarah!",
-          "You have achieved your Exercise goal for the day.",
-          "Great work!"
-        );
+        alert({
+          title: "You did it, Sarah!",
+          message: "You have achieved your Exercise goal for the day.",
+          okButtonText: "Keep Earning Points"
+        }).then(() => {
+        console.log("Alert dialog closed");
+      });
       }
     },
 
