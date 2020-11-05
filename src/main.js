@@ -17,6 +17,8 @@ Vue.registerElement(
   () => require('nativescript-ui-sidedrawer').RadSideDrawer
 )
 
+
+
 TNSFontIcon.debug = true;
 TNSFontIcon.paths = {
   'fa': './assets/fontawesome.min.css',

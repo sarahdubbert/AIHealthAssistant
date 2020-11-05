@@ -1,79 +1,76 @@
 <template>
-  <Page class="ns-dark" actionBarHidden="true">
+  <Page class="page" actionBarHidden="true">
     <FlexboxLayout class="full-height">
       <!-- <Image src="~/images/nsvue_logo.png" class="logo-container /> -->
       <GridLayout rows="*" height="1500px">
         <RadSideDrawer ref="drawer">
-          <StackLayout ~drawerContent backgroundColor="dark">
+          <StackLayout ~drawerContent class="sidedrawer-content">
             <StackLayout
               height="56"
               style="text-align: center; vertical-align: center;"
             >
-              <Label color="white" text="Navigation Menu" />
+              <Label class="label" text="Navigation Menu" />
             </StackLayout>
             <StackLayout>
-              <Label text="Home" padding="10" backgroundColor="white" />
+              <Label class="label sidedrawer-list-item-selected" text="Home" padding="10"/>
               <Label
-                color="white"
+                class="label sidedrawer-list-item"
                 text="My Points"
                 @tap="myPointsTap"
                 padding="10"
               />
-              <Label color="white" text="My Goals" @tap="myProfileTap" padding="10" />
+              <Label class="label sidedrawer-list-item" text="My Goals" @tap="myProfileTap" padding="10" />
             </StackLayout>
             <Label
+              class="label"
               text="Close"
-              color="white"
               padding="10"
               style="horizontal-align: center"
               @tap="onCloseDrawerTap"
             />
           </StackLayout>
           <StackLayout ~mainContent class="container">
-            <FlexboxLayout class="welcome text-primary">
+            <FlexboxLayout class="action-bar welcome">
               <Button @tap="onOpenDrawerTap" width="5"
-                horizontalAlignment="left"
-                class="nav-button-container fas nav-button"
+                class="fas nav-button nav-button-bars" horizontalAlignment="left" androidElevation="0"
                     :text="'fa-bars' | fonticon">
               </Button>
-              <Label class="welcome-text" horizontalAlignment="center" textWrap="true" color="white">
+              <Label class="h3 welcome-text" textWrap="true" horizontalAlignment="center"> 
                 <FormattedString>
-                  <Span text="Welcome," />
-                  <Span text=" Sarah." fontWeight="Bold" />
+                  <Span text="Welcome, Sarah" />
                 </FormattedString>
               </Label>
               <Button @tap="showSuggestion" width="5"
-                horizontalAlignment="right"
-                class="nav-button-container fas nav-button bulb-icon"
+                class="fas nav-button bulb-icon" horizontalAlignment="right" androidElevation="0"
                     :text="'fa-lightbulb' | fonticon">
               </Button>
             </FlexboxLayout>
             <FlexBoxLayout alignItems="center" class="">
-            <Button @tap="sleepTap" class="my-button">
+            <Button @tap="sleepTap" class="my-button-home btn btn-primary btn-rounded-lg">
               <Span class="fas" :text="'fa-bed' | fonticon"></Span>
               <Span text="  Sleep"></Span>
             </Button>
             </FlexBoxLayout>
             <FlexBoxLayout alignItems="center" class="">
-            <Button @tap="exerciseTap" class="my-button">
+            <Button @tap="exerciseTap" class="my-button-home btn-primary btn-rounded-lg">
               <Span class="fas" :text="'fa-running' | fonticon"></Span>
               <Span text="  Exercise"></Span>
             </Button>
             </FlexBoxLayout>
             <FlexBoxLayout alignItems="center" class="">
-            <Button @tap="healthyEatingTap" class="my-button">
+            <Button @tap="healthyEatingTap" class="my-button-home btn-primary btn-rounded-lg">
               <Span class="fas" :text="'fa-utensils' | fonticon"></Span>
               <Span text="  Healthy Eating"></Span>
             </Button>
             </FlexBoxLayout>
             <FlexBoxLayout alignItems="center" class="">
-            <Button @tap="selfCareTap" class="my-button">
+            <Button @tap="selfCareTap" class="my-button-home btn-primary btn-rounded-lg">
               <Span class="fas" :text="'fa-heart' | fonticon"></Span>
               <Span text="  Self Care Time"></Span>
             </Button>
             </FlexBoxLayout>
             <FlexBoxLayout alignItems="center" class="">
-            <Button @tap="relationshipsTap" class="my-button">
+            <Button @tap="relationshipsTap" class="my-button-home btn-primary btn-rounded-lg">
               <Span class="fas" :text="'fa-user-friends' | fonticon"></Span>
               <Span text="  Relationships"></Span>
             </Button>
@@ -216,11 +213,12 @@ export default {
 };
 </script>
 
-<style scoped>
-  /* @font-face {
+<style lang="scss">
+@import '../app.scss';
+  @font-face {
     font-family: "OpenSans-Regular";
     src: url('./../fonts/OpenSans-Regular.ttf');
-  } */
+  }
   /* @import url('https://fonts.googleapis.com/css?family=OpenSans-Regular'); */
   template {
     margin: 0;
@@ -235,23 +233,18 @@ export default {
     color: white;
     placeholder-color: white;
   }
-
-  .icon-margin {
-    margin-right: 10;
-  }
   
-  .my-button {
-    background-color: #66a3ff;
-    color: white;
-    font-weight: bold;
+  .my-button-home {
+    //font-weight: bold;
     border-radius: 25;
     padding-top: 14;
     padding-bottom: 14;
     margin-bottom: 10;
-    margin-top: 10;
+    margin-top:10;
     width: 190;
     height: 55;
-    margin-left: 60;
+    margin-left: 95;
+    font-size:16;
     /* font-family:'OpenSans-Regular' !important; */
   }
 
@@ -262,19 +255,35 @@ export default {
   .nav-button {
     padding:0;
     margin:0;
+    background-color:#74aaff;
+    border:none;
+  }
+
+  .nav-button-bars {
+    //padding-left: -33;
+    //margin-right:-10;
   }
 
   .bulb-icon {
-    margin-left: 20;
+    padding-right: -33;
+    //margin-left:-10;
   }
 
   .welcome-text {
-    margin-left:25;
+    margin-left:0;
+    margin-right:15;
     padding-top:15;
-    /* font-family:'OpenSans-Regular' !important; */
+    text-align:center;
+    padding-left:10;
   }
 
   .welcome {
-    margin-bottom:20;
+    margin-bottom:10;
+  }
+
+  .container {
+    margin-top:-30;
+    padding-right:-30;
+    padding-left:-30;
   }
 </style>

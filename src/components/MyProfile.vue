@@ -1,5 +1,5 @@
 <template>
-  <Page class="ns-dark" actionBarHidden="true">
+  <Page class="page" actionBarHidden="true">
       <GridLayout @tap="dismissKeyboard" rows="*" height="1500px">
         <RadSideDrawer ref="drawer">
           <StackLayout ~drawerContent backgroundColor="dark">
@@ -10,14 +10,13 @@
               <Label color="white" text="Navigation Menu" />
             </StackLayout>
             <StackLayout>
-              <Label color="white" text="Home" padding="10" @tap="homeTap" />
+              <Label color="white" text="Home" @tap="homeTap" />
               <Label
                 color="white"
                 text="My Points"
-                padding="10"
                 @tap="myPointsTap"
               />
-              <Label color="white" text="My Goals" padding="10" />
+              <Label color="white" text="My Goals" />
             </StackLayout>
             <Label
               text="Close"
@@ -27,12 +26,12 @@
             />
           </StackLayout>
           <StackLayout ~mainContent class="container">
-            <FlexBoxLayout class="welcome  text-primary">
+            <FlexBoxLayout class="welcome text-primary">
               <Button @tap="homeTap" width="5" horizontalAlignment="left"
-              class="fas nav-button"
+              class="fas nav-button" androidElevation="0"
               :text="'fa-chevron-left' | fonticon">
               </Button>
-              <Label class="welcome-text" horizontalAlignment="center" textWrap="true" color="white">
+              <Label class="h3 welcome-text-goals" horizontalAlignment="center" textWrap="true" color="white">
                 <FormattedString>
                   <Span text="My Goals" />
                 </FormattedString>
@@ -48,7 +47,9 @@
                 keyboardType="number"
                 maxLength="2"
                 id="sleepField"
-                class="text-field border-bottom"
+                width="50"
+                height="30"
+                class="input-goal input-rounded"
                 horizontalAlignment="right"
               />
             </FlexBoxLayout>
@@ -61,8 +62,10 @@
                 v-model="exerciseGoal"
                 keyboardType="number"
                 maxLength="2"
+                width="50"
+                height="30"
                 id="exerciseField"
-                class="text-field border-bottom"
+                class="input-goal input-rounded"
               />
             </FlexBoxLayout>
             <FlexBoxLayout alignItems="center" class="flex-container">
@@ -74,8 +77,10 @@
                 v-model="eatingGoal"
                 keyboardType="number"
                 maxLength="2"
+                width="50"
+                height="30"
                 id="healthyEatingField"
-                class="text-field border-bottom"
+                class="input-goal input-rounded"
               />
             </FlexBoxLayout>
             <FlexBoxLayout alignItems="center" class="flex-container">
@@ -87,8 +92,10 @@
                 v-model="careGoal"
                 keyboardType="number"
                 maxLength="2"
+                width="50"
+                height="30"
                 id="selfCareField"
-                class="text-field border-bottom"
+                class="input-goal input-rounded"
               />
             </FlexBoxLayout>
             <FlexBoxLayout alignItems="center" class="flex-container">
@@ -101,10 +108,12 @@
                 keyboardType="number"
                 maxLength="2"
                 id="relationshipsField"
-                class="text-field border-bottom"
+                width="50"
+                height="30"
+                class="input-goal input-rounded"
               />
             </FlexBoxLayout>
-            <Button text="Update Goals" @tap="onSubmit" class="my-button"/>
+            <Button text="Update Goals" @tap="onSubmit" class="my-button-goals btn btn-primary btn-rounded-lg"/>
           </StackLayout>
         </RadSideDrawer>
       </GridLayout>
@@ -120,7 +129,6 @@ import Vue from "nativescript-vue";
 import RadSideDrawer from "nativescript-ui-sidedrawer/vue";
 import Home from "./Home";
 import MyPoints from "./MyPoints";
-import MyProfile from "./MyProfile";
 Vue.use(RadSideDrawer);
 
 var FeedbackPlugin = require("nativescript-feedback");
@@ -146,7 +154,8 @@ export default {
         this.$store.commit('updateRelationshipGoal', this.relationshipGoal);
         feedback.show({
             messageSize: 14,
-            backgroundColor: new color.Color("#66a3ff"),
+            messageColor: new color.Color("#74aaff"),
+            backgroundColor: new color.Color("#ffffff"),
             message: "Success! Your goals have been updated."
         });
     },
@@ -184,7 +193,8 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss">
+@import '../app.scss';
 /* @font-face {
     font-family: "OpenSans-Regular";
     src: url('./../fonts/OpenSans-Regular.ttf');
@@ -201,9 +211,7 @@ template {
 }
 
 .container {
-  padding: 0 15;
   font-size: 16;
-  /* font-family: 'OpenSans-Regular'; */
 }
 
 .description-label {
@@ -215,29 +223,27 @@ template {
     border-bottom-color: white;
   }
 
-.welcome-text {
-    margin-left:25;
+.welcome-text-goals {
+    margin-left:50;
     padding-top:15;
+    text-align:center;
   }
 
 .nav-button {
-  padding:0;
-  margin:0;
+  padding-left: -33;
+  margin-right:-10;
 }
 
-.my-button {
-  background-color: #66a3ff;
-  color: white;
-  font-weight: bold;
+.my-button-goals {
   border-radius: 25;
   padding-top: 14;
   padding-bottom: 14;
-  letter-spacing: 0.1;
   margin-bottom: 10;
   margin-top: 20;
   width: 190;
   height: 55;
-  margin-left: 25;
+  text-align:center;
+  font-size:16;
   }
 
 .welcome {
@@ -248,11 +254,11 @@ template {
 .text-field {
   width: 20;
   height: 35;
-  font-size: 14;
 }
 
 .flex-container {
   margin-bottom: 10;
+  padding-left:50;
 }
 
 .label-text {
