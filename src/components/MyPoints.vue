@@ -1,59 +1,19 @@
 <template>
-  <Page class="ns-dark" actionBarHidden="true">
-    <ScrollView>
-      <GridLayout rows="*" height="1500px">
-        <RadSideDrawer ref="drawer">
-          <StackLayout ~drawerContent backgroundColor="dark">
-            <StackLayout
-              height="56"
-              style="text-align: center; vertical-align: center;"
-            >
-              <Label color="white" text="Navigation Menu" />
-            </StackLayout>
-            <StackLayout>
-              <Label color="white" text="Home" padding="10" @tap="homeTap" />
-              <Label text="My Points" padding="10" backgroundColor="white" />
-              <Label color="white" text="My Goals" @tap="myProfileTap" padding="10" />
-            </StackLayout>
-            <Label
-              text="Close"
-              color="white"
-              padding="10"
-              style="horizontal-align: center"
-              @tap="onCloseDrawerTap"
-            />
-          </StackLayout>
-          <StackLayout ~mainContent>
-            <Button @tap="homeTap" width="10%" horizontalAlignment="left">
-              <FormattedString>
-                <Span
-                  class="fas nav-button"
-                  :text="'fa-chevron-left' | fonticon"
-                ></Span>
-              </FormattedString>
-            </Button>
-            <Label textWrap="true" color="white">
-              <FormattedString>
-                <Label :text="'You have ' + this.$store.state.totalPoints" />
-              </FormattedString>
-            </Label>
-            <GridLayout rows="*" height="1000px">
-              <RadCartesianChart row="0" style="font-size: 12;">
-                <LineSeries
-                  v-tkCartesianSeries
-                  :items="categoricalSource"
-                  categoryProperty="Country"
-                  valueProperty="Amount"
-                />
-                <CategoricalAxis v-tkCartesianHorizontalAxis />
-                <LinearAxis v-tkCartesianVerticalAxis />
-              </RadCartesianChart>
-            </GridLayout>
-          </StackLayout>
-        </RadSideDrawer>
-        <Button text="Press" @tap="onButtonTap" />
-      </GridLayout>
-    </ScrollView>
+   <Page>
+    <GridLayout rows="*, auto">
+      <RadRadialGauge :title="title">
+      <TitleStyle v-tkRadialGaugeTitleStyle textColor="gray" ios:textSize="12" ios:verticalOffset="30" android:verticalOffset="90"></TitleStyle>
+      <RadialScale ref="myScale" v-tkRadialGaugeScales startAngle="0" sweepAngle="360" minimum="0" maximum="100" radius="0.9">
+        <ScaleStyle v-tkRadialScaleStyle ticksVisible="false" labelsVisible="false" lineThickness="0"></ScaleStyle>
+        <RadialBarIndicator v-tkRadialScaleIndicators minimum="0" maximum="100" location="1">
+            <BarIndicatorStyle v-tkRadialBarIndicatorStyle fillColor="rgba(132,235,247,0.5)" barWidth="0.2"></BarIndicatorStyle>
+          </RadialBarIndicator>
+          <RadialBarIndicator v-tkRadialScaleIndicators minimum="0" :maximum="sleepPoints" location="1" isAnimated="true">
+            <BarIndicatorStyle v-tkRadialBarIndicatorStyle cap="Round" fillColor="rgba(132,235,247,1)" barWidth="0.2"></BarIndicatorStyle>
+          </RadialBarIndicator>
+      </RadialScale>
+    </RadRadialGauge>
+    </GridLayout>
   </Page>
 </template>
 
@@ -63,8 +23,8 @@
 
     import RadRadialGauge from "nativescript-ui-gauge/vue";
     Vue.use(RadRadialGauge);
+    
     import * as utils from 'tns-core-modules/utils/utils';
-
     import Vue from "nativescript-vue";
     import RadSideDrawer from "nativescript-ui-sidedrawer/vue";
     import Sleep from "./Sleep";
@@ -123,17 +83,24 @@
             },
             accessStore() {
                 this.$store.getPoints();
+            },
+
+            onNavigationButtonTap() {
+              Frame.topmost().goBack();
+            },
+            onValueChange(value) {
+              this.$refs.needle.nativeView.value = value;
             }
         },
         data() {
             return {
-                sleepPoints: 0
+                sleepPoints: "10",
+                title: ""
             }
         },
         mounted() {
-            console.log('calculating...');
             this.calculateSleepPoints();
-            console.log(this.sleepPoints);
+            this.title = this.sleepPoints + "/100";
         }
     };
 </script>
