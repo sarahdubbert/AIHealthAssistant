@@ -41,7 +41,7 @@
               <FormattedString>
                 <Span text=" Did you know " fontWeight="Bold" />
                 <Span
-                  text=" that self care can look different for everyone? Check out some of our tips. "
+                  text=" that self care can look different for everyone? It's important to find what works best for you."
                 />
                 <Span text=" Your current goal is to get " />
                 <Span :text=" careGoal " fontWeight="Bold" />

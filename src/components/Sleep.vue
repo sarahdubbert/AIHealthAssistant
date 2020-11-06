@@ -33,11 +33,15 @@
               <Button @tap="homeTap" width="5" class="fas back-button"
                   :text="'fa-chevron-left' | fonticon" horizontalAlignment="left" androidElevation="0">
             </Button>
-              <Label class="h3 welcome-text-goals" textWrap="true" horizontalAlignment="center" color="#74aaff">
+              <Label class="h2 welcome-text-goals" textWrap="true" horizontalAlignment="center" color="#74aaff">
                   <FormattedString>
                     <Span text="Sleep"/>
                   </FormattedString>
-                </Label>
+              </Label>
+              <Button @tap="showInfo" width="5"
+                class="fas nav-button info-icon" horizontalAlignment="right" androidElevation="0"
+                    :text="'fa-info-circle' | fonticon">
+              </Button>
             </FlexBoxLayout>
             <FlexBoxLayout alignItems="center" class="current-goal">
               <Label textWrap="true" color="#74aaff">
@@ -116,7 +120,14 @@ export default {
       var myTextField = args.object;
       myTextField.dismissSoftInput();
     },
-
+    showInfo() {
+        alert({
+          message: "Sleep is so important for all cognitive functions. Getting enough hours of sleep every night will improve your focus, boost your mood, and give you the energy you need throughout the day! We recommend that you turn off all screens at least an hour before bed, and that you try your best to stick to the same sleep schedule every night.",
+          okButtonText: "Got it!"
+        }).then(() => {
+        console.log("Alert dialog closed");
+      });
+    },
     onSubmit() {
       this.$store.commit('increasePointsSleep', this.textFieldValue);
       if(this.$store.state.sleepGoal > this.$store.state.sleepPoints) {
@@ -212,7 +223,7 @@ export default {
 }
 
 .welcome-text-goals {
-  margin-left:55;
+  margin-left:48;
 }
 
 .container-category {
@@ -232,7 +243,7 @@ export default {
   height: 55;
   text-align:center;
   font-size:16;
-  margin-left:45;
+  margin-left:50;
   }
 
   .text-field {
@@ -245,7 +256,9 @@ export default {
   }
 
   .fun-fact {
+    font-size:12;
     margin-top:50;
+    text-align:center;
   }
 
   .current-goal {
@@ -269,5 +282,12 @@ export default {
   .submit-button {
     margin-top: 10;
   }
-  
+
+  .info-icon {
+    background-color: white;
+    color:#74aaff;
+    margin-left:50;
+    padding-left:45;
+  }
+
 </style>
