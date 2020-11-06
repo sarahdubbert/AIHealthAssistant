@@ -269,8 +269,5 @@ export default {
   .submit-button {
     margin-top: 10;
   }
-
-  Label {
-    color:orange;
-  }
+  
 </style>

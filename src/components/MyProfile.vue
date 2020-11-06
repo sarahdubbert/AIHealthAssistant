@@ -37,7 +37,7 @@
                 </FormattedString>
               </Label>
             </FlexBoxLayout>
-            <FlexBoxLayout alignItems="center" class="flex-container">
+            <FlexBoxLayout alignItems="center" class="flex-container sleep">
               <Label textWrap="true" color="white" class="label-text">
                   <Span class="fas" :text="'fa-bed' | fonticon"></Span>
                   <Span text="  Sleep"></Span>
@@ -53,7 +53,7 @@
                 horizontalAlignment="right"
               />
             </FlexBoxLayout>
-            <FlexBoxLayout alignItems="center" class="flex-container">
+            <FlexBoxLayout alignItems="center" class="flex-container exercise">
               <Label textWrap="true" color="white" class="label-text">
                 <Span class="fas" :text="'fa-running' | fonticon"></Span>
                 <Span text="  Exercise"></Span>
@@ -68,10 +68,10 @@
                 class="input-goal input-rounded"
               />
             </FlexBoxLayout>
-            <FlexBoxLayout alignItems="center" class="flex-container">
+            <FlexBoxLayout alignItems="center" class="flex-container eating">
               <Label textWrap="true" color="white" class="label-text">
                   <Span class="fas" :text="'fa-utensils' | fonticon"></Span>
-                <Span text="  Healthy Eating"></Span>
+                <Span text="  Nutrition"></Span>
               </Label>
               <TextField
                 v-model="eatingGoal"
@@ -83,7 +83,7 @@
                 class="input-goal input-rounded"
               />
             </FlexBoxLayout>
-            <FlexBoxLayout alignItems="center" class="flex-container">
+            <FlexBoxLayout alignItems="center" class="flex-container care">
               <Label textWrap="true" color="white" class="label-text">
                   <Span class="fas" :text="'fa-heart' | fonticon"></Span>
                   <Span text="  Self Care Time"></Span>
@@ -98,7 +98,7 @@
                 class="input-goal input-rounded"
               />
             </FlexBoxLayout>
-            <FlexBoxLayout alignItems="center" class="flex-container">
+            <FlexBoxLayout alignItems="center" class="flex-container relationship">
               <Label textWrap="true" color="white" class="label-text">
                   <Span class="fas" :text="'fa-user-friends' | fonticon"></Span>
                   <Span text="  Relationships"></Span>
@@ -263,5 +263,24 @@ template {
 
 .label-text {
   padding-top: 10;
+}
+
+.sleep {
+  margin-left: 62;
+}
+
+.exercise{
+  margin-left: 50;
+}
+
+.eating {
+  margin-left: 49;
+}
+
+.care {
+}
+
+.relationship {
+  margin-left: 6;
 }
 </style>

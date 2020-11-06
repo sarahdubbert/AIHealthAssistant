@@ -54,7 +54,7 @@
             <FlexBoxLayout alignItems="center" class="">
             <Button @tap="healthyEatingTap" class="my-button-home btn-primary btn-rounded-lg">
               <Span class="fas" :text="'fa-utensils' | fonticon"></Span>
-              <Span text="  Healthy Eating"></Span>
+              <Span text="  Nutrition"></Span>
             </Button>
             </FlexBoxLayout>
             <FlexBoxLayout alignItems="center" class="">

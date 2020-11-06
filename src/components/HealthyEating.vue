@@ -90,7 +90,7 @@ export default {
       if(this.$store.state.eatingGoal <= this.$store.state.eatingPoints) {
         alert({
           title: "You did it, Sarah!",
-          message: "You have achieved your Healthy Eating goal for the day.",
+          message: "You have achieved your Nutrition goal for the day.",
           okButtonText: "Keep Earning Points"
         }).then(() => {
         console.log("Alert dialog closed");
