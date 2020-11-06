@@ -1,19 +1,34 @@
 <template>
-   <Page>
-    <GridLayout rows="*, auto">
-      <RadRadialGauge :title="pointsFormat">
-      <TitleStyle v-tkRadialGaugeTitleStyle textColor="gray" ios:textSize="22" ios:verticalOffset="30" android:verticalOffset="90" android:textSize="22"></TitleStyle>
-      <RadialScale ref="myScale" v-tkRadialGaugeScales startAngle="0" sweepAngle="360" minimum="0" maximum="100" radius="0.9">
-        <ScaleStyle v-tkRadialScaleStyle ticksVisible="false" labelsVisible="false" lineThickness="0"></ScaleStyle>
-        <RadialBarIndicator v-tkRadialScaleIndicators minimum="0" maximum="100" location="1">
-            <BarIndicatorStyle v-tkRadialBarIndicatorStyle fillColor="rgba(132,235,247,0.5)" barWidth="0.2"></BarIndicatorStyle>
-          </RadialBarIndicator>
-          <RadialBarIndicator v-tkRadialScaleIndicators minimum="0" :maximum="totalPoints" location="1" isAnimated="true">
-            <BarIndicatorStyle v-tkRadialBarIndicatorStyle cap="Round" fillColor="rgba(132,235,247,1)" barWidth="0.2"></BarIndicatorStyle>
-          </RadialBarIndicator>
-      </RadialScale>
-    </RadRadialGauge>
-    </GridLayout>
+   <Page class="page" actionBarHidden="true">
+    <StackLayout class="container">
+        <FlexBoxLayout class="welcome text-primary">
+            <Button @tap="homeTap" width="5" horizontalAlignment="left"
+            class="fas nav-button" androidElevation="0"
+            :text="'fa-chevron-left' | fonticon">
+            </Button>
+            <Label class="h3 welcome-text-goals" horizontalAlignment="center" textWrap="true" color="white">
+                <FormattedString>
+                    <Span text="My Points" />
+                </FormattedString>
+            </Label>
+        </FlexBoxLayout>
+        <FlexBoxLayout class="gauge-flex">
+            <GridLayout rows="*, auto">
+                <RadRadialGauge :title="pointsFormat">
+                    <TitleStyle v-tkRadialGaugeTitleStyle textColor="white" ios:textSize="22" ios:verticalOffset="30" android:verticalOffset="90" android:textSize="22"></TitleStyle>
+                    <RadialScale ref="myScale" v-tkRadialGaugeScales startAngle="0" sweepAngle="360" minimum="0" maximum="100" radius="0.9">
+                        <ScaleStyle v-tkRadialScaleStyle ticksVisible="false" labelsVisible="false" lineThickness="0"></ScaleStyle>
+                        <RadialBarIndicator v-tkRadialScaleIndicators minimum="0" maximum="100" location="1">
+                            <BarIndicatorStyle v-tkRadialBarIndicatorStyle fillColor="white" barWidth="0.2"></BarIndicatorStyle>
+                        </RadialBarIndicator>
+                        <RadialBarIndicator v-tkRadialScaleIndicators minimum="0" :maximum="totalPoints" location="1" isAnimated="true">
+                            <BarIndicatorStyle v-tkRadialBarIndicatorStyle cap="Round" fillColor="#05668d" barWidth="0.2"></BarIndicatorStyle>
+                        </RadialBarIndicator>
+                    </RadialScale>
+                </RadRadialGauge>
+            </GridLayout>
+        </FlexBoxLayout>
+    </StackLayout>
   </Page>
 </template>
 
@@ -108,14 +123,100 @@
     };
 </script>
 
-<style scoped>
+<style lang="scss">
+@import '../app.scss';
+/* @font-face {
+    font-family: "OpenSans-Regular";
+    src: url('./../fonts/OpenSans-Regular.ttf');
+  }
+@import url('https://fonts.googleapis.com/css?family=OpenSans-Regular'); */
+template {
+    margin: 0;
+    font-size: 16;
+}
 .home-panel {
   vertical-align: center;
   font-size: 20;
   margin: 15;
 }
 
+.container {
+  font-size: 16;
+}
+
 .description-label {
-  margin-bottom: 15;
+  margin-bottom: 10;
+}
+
+.border-bottom {
+    border-bottom-width: 1;
+    border-bottom-color: white;
+  }
+
+.welcome-text-goals {
+    margin-left:40;
+    padding-top:15;
+    text-align:center;
+  }
+
+.nav-button {
+  padding-left: -33;
+  margin-right:-10;
+}
+
+.my-button-goals {
+  border-radius: 25;
+  padding-top: 14;
+  padding-bottom: 14;
+  margin-bottom: 10;
+  margin-top: 20;
+  width: 190;
+  height: 55;
+  text-align:center;
+  font-size:16;
+  }
+
+.welcome {
+  margin-left:25;
+  padding-top:15;
+}
+
+.text-field {
+  width: 20;
+  height: 35;
+}
+
+.flex-container {
+  margin-bottom: 10;
+  padding-left:50;
+}
+
+.label-text {
+  padding-top: 10;
+}
+
+.sleep {
+  margin-left: 82;
+}
+
+.exercise{
+  margin-left: 70;
+}
+
+.eating {
+  margin-left: 69;
+}
+
+.care {
+  margin-left:21;
+}
+
+.relationship {
+  margin-left: 26;
+}
+
+.gauge-flex {
+    padding:40;
 }
 </style>
+
