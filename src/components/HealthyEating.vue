@@ -1,5 +1,5 @@
 <template>
-  <Page class="ns-dark" actionBarHidden="true">
+  <Page class="page-category" actionBarHidden="true">
     <ScrollView @tap="dismissKeyboard">
       <GridLayout rows="*" height="1500px">
         <RadSideDrawer ref="drawer">
@@ -28,33 +28,64 @@
               @tap="onCloseDrawerTap"
             />
           </StackLayout>
-          <StackLayout ~mainContent>
-            <Button @tap="homeTap" width="10%" horizontalAlignment="left">
-              <FormattedString>
-                <Span
-                  class="fas nav-button"
-                  :text="'fa-chevron-left' | fonticon"
-                ></Span>
-              </FormattedString>
+          <StackLayout ~mainContent class="container-category">
+            <FlexBoxLayout alignItems="center" class="title-category">
+              <Button @tap="homeTap" width="5" class="fas back-button"
+                  :text="'fa-chevron-left' | fonticon" horizontalAlignment="left" androidElevation="0">
             </Button>
-            <Label textWrap="true" color="white">
-              <FormattedString>
-                <Span text=" Did you know " fontWeight="Bold" />
-                <Span
-                  text=" that diets made up of whole foods are less expensive than diets made up of processed foods?"
-                />
-                <Span text=" Your current goal is to eat " />
-                <Span :text=" eatingGoal " fontWeight="Bold" />
-                <Span text=" home-cooked meals a day." />
-              </FormattedString>
-            </Label>
-            <TextField
-              v-model="textFieldValue"
-              keyboardType="number"
-              maxLength="2"
-              hint="Enter number of home-cooked meals eaten today..."
-            />
-            <Button text="Submit" @tap="onSubmit" />
+              <Label class="h2 welcome-text-goals" textWrap="true" horizontalAlignment="center" color="#74aaff">
+                  <FormattedString>
+                    <Span text="Nutrition"/>
+                  </FormattedString>
+              </Label>
+              <Button @tap="showInfo" width="5"
+                class="fas nav-button info-icon" horizontalAlignment="right" androidElevation="0"
+                    :text="'fa-info-circle' | fonticon">
+              </Button>
+            </FlexBoxLayout>
+
+            <FlexBoxLayout alignItems="center" class="current-goal">
+              <Label textWrap="true" color="#74aaff">
+                <FormattedString>
+                  <Span text="You have\n" />
+                  <Span :text=" currentProgress " fontWeight="Bold" fontSize="36"/>
+                  <Span text="  of  " />
+                  <Span :text=" eatingGoal + '\n'" fontWeight="Bold" fontSize="36"/>
+                  <Span text=" meals completed toward your goal." />
+                </FormattedString>
+              </Label>
+            </FlexBoxLayout>
+            
+            <FlexBoxLayout alignItems="center" class="enter-hours">
+              <Label textWrap="true" color="#74aaff">
+                <FormattedString>
+                  <Span text="Enter Meals " />
+                </FormattedString>
+              </Label>
+              <TextField
+                v-model="textFieldValue"
+                keyboardType="number"
+                maxLength="2"
+                width="50"
+                height="30"
+                :hint="0"
+                class="input-category input-rounded"
+              />
+            </FlexBoxLayout>
+            <FlexBoxLayout alignItems="center" class="submit-button">
+              <Button text="Enter Meals" @tap="onSubmit" class="my-button-category btn btn-primary btn-rounded-lg" />
+            </FlexBoxLayout>
+
+            <FlexBoxLayout alignItems="center" class="fun-fact">
+              <Label textWrap="true" color="#74aaff">
+                <FormattedString>
+                  <Span text="Did you know " fontWeight="Bold" />
+                  <Span
+                    text="that diets made up of whole foods are less expensive than diets made up of processed foods?"
+                  />
+                </FormattedString>
+              </Label>
+            </FlexBoxLayout>
           </StackLayout>
         </RadSideDrawer>
       </GridLayout>
@@ -74,6 +105,10 @@ import MyProfile from "./MyProfile";
 import * as utils from 'tns-core-modules/utils/utils';
 Vue.use(RadSideDrawer);
 
+var FeedbackPlugin = require("nativescript-feedback");
+var feedback = new FeedbackPlugin.Feedback();
+var color = require("color");
+
 export default {
   methods: {
     dismissKeyboard() {
@@ -85,8 +120,25 @@ export default {
       myTextField.dismissSoftInput();
     },
 
+    showInfo() {
+        alert({
+          message: "Eating nutritious, whole foods will keep your body feeling good, give you energy, and boost your mood throughout the day. Healthy food can also be delicious, and it’s fun learning new recipes and healthy combinations. Try looking online for new recipes or reading cookbooks to learn how to make some of your favorite foods at home.",
+          okButtonText: "Got it!"
+        }).then(() => {
+        console.log("Alert dialog closed");
+      });
+    },
+
     onSubmit() {
       this.$store.commit('increasePointsEating', this.textFieldValue);
+      if(this.$store.state.eatingGoal > this.$store.state.eatingPoints) {
+        feedback.show({
+            messageSize: 14,
+            messageColor: new color.Color("#ffffff"),
+            backgroundColor: new color.Color("#74aaff"),
+            message: "Success! Your nutritionous meals for today have been updated."
+        });
+      }
       if(this.$store.state.eatingGoal <= this.$store.state.eatingPoints) {
         alert({
           title: "You did it, Sarah!",
@@ -120,6 +172,9 @@ export default {
     eatingGoal() {
       return this.$store.state.eatingGoal;
     },
+    currentProgress() {
+      return this.$store.state.eatingPoints;
+    },
   },
 
   data() {
@@ -146,4 +201,85 @@ export default {
 .description-label {
   margin-bottom: 15;
 }
+
+.border-bottom {
+    border-bottom-width: 1;
+    border-bottom-color: white;
+  }
+
+.back-button {
+  background-color:white;
+  border-width: 0;
+  color: #74aaff;
+  margin-left:-20;
+}
+
+.welcome-text-goals {
+  margin-left:30;
+}
+
+.container-category {
+  font-size: 16;
+  padding: 0 15;
+}
+
+.my-button-category {
+  background-color:#74aaff;
+  color: white;
+  border-radius: 25;
+  padding-top: 14;
+  padding-bottom: 14;
+  margin-bottom: 10;
+  margin-top: 20;
+  width: 190;
+  height: 55;
+  text-align:center;
+  font-size:16;
+  margin-left:50;
+  }
+
+  .text-field {
+    font-size: 14;
+    margin-bottom: 20;
+  }
+
+  .title-category {
+    text-align: center;
+  }
+
+  .fun-fact {
+    font-size:12;
+    margin-top:45;
+    text-align:center;
+  }
+
+  .current-goal {
+    margin-bottom: 10;
+    text-align:center;
+    width:300;
+    margin-left:30;
+    margin-top: 20;
+  }
+
+  .progress {
+    margin-bottom: 10;
+  }
+
+  .enter-hours {
+    margin-bottom: 10;
+    margin-left:60;
+    margin-top:30;
+  }
+
+  .submit-button {
+    margin-top: 10;
+  }
+
+  .info-icon {
+    background-color: white;
+    color:#74aaff;
+    margin-left:20;
+    padding-left:45;
+  }
+
 </style>

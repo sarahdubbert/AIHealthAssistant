@@ -67,12 +67,12 @@
                 maxLength="2"
                 width="50"
                 height="30"
-                :hint="currentProgress"
+                :hint="0"
                 class="input-category input-rounded"
               />
             </FlexBoxLayout>
             <FlexBoxLayout alignItems="center" class="submit-button">
-              <Button text="Submit Hours" @tap="onSubmit" class="my-button-category btn btn-primary btn-rounded-lg" />
+              <Button text="Enter Hours" @tap="onSubmit" class="my-button-category btn btn-primary btn-rounded-lg" />
             </FlexBoxLayout>
             <FlexBoxLayout alignItems="center" class="fun-fact">
               <Label textWrap="true" color="#74aaff">
@@ -120,6 +120,7 @@ export default {
       var myTextField = args.object;
       myTextField.dismissSoftInput();
     },
+
     showInfo() {
         alert({
           message: "Sleep is so important for all cognitive functions. Getting enough hours of sleep every night will improve your focus, boost your mood, and give you the energy you need throughout the day! We recommend that you turn off all screens at least an hour before bed, and that you try your best to stick to the same sleep schedule every night.",
@@ -128,6 +129,7 @@ export default {
         console.log("Alert dialog closed");
       });
     },
+
     onSubmit() {
       this.$store.commit('increasePointsSleep', this.textFieldValue);
       if(this.$store.state.sleepGoal > this.$store.state.sleepPoints) {
@@ -287,7 +289,7 @@ export default {
     background-color: white;
     color:#74aaff;
     margin-left:50;
-    padding-left:45;
+    padding-left:35;
   }
 
 </style>

@@ -266,21 +266,22 @@ template {
 }
 
 .sleep {
-  margin-left: 62;
+  margin-left: 82;
 }
 
 .exercise{
-  margin-left: 50;
+  margin-left: 70;
 }
 
 .eating {
-  margin-left: 49;
+  margin-left: 69;
 }
 
 .care {
+  margin-left:21;
 }
 
 .relationship {
-  margin-left: 6;
+  margin-left: 26;
 }
 </style>

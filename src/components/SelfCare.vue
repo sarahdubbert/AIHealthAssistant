@@ -1,5 +1,5 @@
 <template>
-  <Page class="ns-dark" actionBarHidden="true">
+  <Page class="page-category" actionBarHidden="true">
     <ScrollView @tap="dismissKeyboard">
       <GridLayout rows="*" height="1500px">
         <RadSideDrawer ref="drawer">
@@ -28,33 +28,62 @@
               @tap="onCloseDrawerTap"
             />
           </StackLayout>
-          <StackLayout ~mainContent>
-            <Button @tap="homeTap" width="10%" horizontalAlignment="left">
-              <FormattedString>
-                <Span
-                  class="fas nav-button"
-                  :text="'fa-chevron-left' | fonticon"
-                ></Span>
-              </FormattedString>
+          <StackLayout ~mainContent class="container-category">
+            <FlexBoxLayout alignItems="center" class="title-category">
+              <Button @tap="homeTap" width="5" class="fas back-button"
+                  :text="'fa-chevron-left' | fonticon" horizontalAlignment="left" androidElevation="0">
             </Button>
-            <Label textWrap="true" color="white">
-              <FormattedString>
-                <Span text=" Did you know " fontWeight="Bold" />
-                <Span
-                  text=" that self care can look different for everyone? It's important to find what works best for you."
-                />
-                <Span text=" Your current goal is to get " />
-                <Span :text=" careGoal " fontWeight="Bold" />
-                <Span text=" hour of time to yourself each day." />
-              </FormattedString>
-            </Label>
-            <TextField
-              v-model="textFieldValue"
-              keyboardType="number"
-              maxLength="2"
-              hint="Enter number of hours that you chose to take care of yourself today..."
-            />
-            <Button text="Submit" @tap="onSubmit" />
+              <Label class="h2 welcome-text-goals" textWrap="true" horizontalAlignment="center" color="#74aaff">
+                  <FormattedString>
+                    <Span text="Self Care"/>
+                  </FormattedString>
+              </Label>
+              <Button @tap="showInfo" width="5"
+                class="fas nav-button info-icon" horizontalAlignment="right" androidElevation="0"
+                    :text="'fa-info-circle' | fonticon">
+              </Button>
+            </FlexBoxLayout>
+
+            <FlexBoxLayout alignItems="center" class="current-goal">
+              <Label textWrap="true" color="#74aaff">
+                <FormattedString>
+                  <Span text="You have\n" />
+                  <Span :text=" currentProgress " fontWeight="Bold" fontSize="36"/>
+                  <Span text="  of  " />
+                  <Span :text=" careGoal + '\n'" fontWeight="Bold" fontSize="36"/>
+                  <Span text=" hours completed toward your goal." />
+                </FormattedString>
+              </Label>
+            </FlexBoxLayout>
+            <FlexBoxLayout alignItems="center" class="enter-hours">
+              <Label textWrap="true" color="#74aaff">
+                <FormattedString>
+                  <Span text="Enter Hours " />
+                </FormattedString>
+              </Label>
+              <TextField
+                v-model="textFieldValue"
+                keyboardType="number"
+                maxLength="2"
+                width="50"
+                height="30"
+                :hint="0"
+                class="input-category input-rounded"
+              />
+            </FlexBoxLayout>
+            <FlexBoxLayout alignItems="center" class="submit-button">
+              <Button text="Enter Hours" @tap="onSubmit" class="my-button-category btn btn-primary btn-rounded-lg" />
+            </FlexBoxLayout>
+            <FlexBoxLayout alignItems="center" class="fun-fact">
+              <Label textWrap="true" color="#74aaff">
+                <FormattedString>
+                  <Span text="Did you know " fontWeight="Bold" />
+                  <Span
+                    text="that self care can look different for everyone? It's important to find what works best for you."
+                  />
+                </FormattedString>
+              </Label>
+            </FlexBoxLayout>
           </StackLayout>
         </RadSideDrawer>
       </GridLayout>
@@ -74,6 +103,10 @@ import MyPoints from "./MyPoints";
 import MyProfile from "./MyProfile";
 Vue.use(RadSideDrawer);
 
+var FeedbackPlugin = require("nativescript-feedback");
+var feedback = new FeedbackPlugin.Feedback();
+var color = require("color");
+
 export default {
   methods: {
     dismissKeyboard() {
@@ -85,8 +118,25 @@ export default {
       myTextField.dismissSoftInput();
     },
 
+    showInfo() {
+        alert({
+          message:"Self Care can look different for everyone. This is an important time to take to yourself each day to focus on your mental, physical, and even spiritual well-being. Activities might include taking a bath, reading a book, watching a light-hearted television show, writing down the things you are grateful for, meditating, or going for a walk. Just do what makes you feel happy, relaxed, and at peace.",
+          okButtonText: "Got it!"
+        }).then(() => {
+        console.log("Alert dialog closed");
+      });
+    },
+
     onSubmit() {
       this.$store.commit('increasePointsCare', this.textFieldValue);
+      if(this.$store.state.careGoal > this.$store.state.carePoints) {
+        feedback.show({
+            messageSize: 14,
+            messageColor: new color.Color("#ffffff"),
+            backgroundColor: new color.Color("#74aaff"),
+            message: "Success! Your self care hours for today have been updated."
+        });
+      }
       if(this.$store.state.careGoal <= this.$store.state.carePoints) {
         alert({
           title: "You did it, Sarah!",
@@ -120,6 +170,9 @@ export default {
     careGoal() {
       return this.$store.state.careGoal;
     },
+    currentProgress() {
+      return this.$store.state.carePoints;
+    },
   },
 
   data() {
@@ -145,4 +198,83 @@ export default {
 .description-label {
   margin-bottom: 15;
 }
+
+.border-bottom {
+    border-bottom-width: 1;
+    border-bottom-color: white;
+  }
+
+.back-button {
+  background-color:white;
+  border-width: 0;
+  color: #74aaff;
+  margin-left:-20;
+}
+
+.welcome-text-goals {
+  margin-left:30;
+}
+
+.container-category {
+  font-size: 16;
+  padding: 0 15;
+}
+
+.my-button-category {
+  background-color:#74aaff;
+  color: white;
+  border-radius: 25;
+  padding-top: 14;
+  padding-bottom: 14;
+  margin-bottom: 10;
+  margin-top: 20;
+  width: 190;
+  height: 55;
+  text-align:center;
+  font-size:16;
+  margin-left:50;
+  }
+
+  .text-field {
+    font-size: 14;
+    margin-bottom: 20;
+  }
+
+  .title-category {
+    text-align: center;
+  }
+
+  .fun-fact {
+    font-size:12;
+    margin-top:60;
+    text-align:center;
+  }
+
+  .current-goal {
+    margin-bottom: 10;
+    text-align:center;
+    width:300;
+    margin-left:30;
+    margin-top: 20;
+  }
+
+  .progress {
+    margin-bottom: 10;
+  }
+
+  .enter-hours {
+    margin-left:60;
+    margin-top:20;
+  }
+
+  .submit-button {
+  }
+
+  .info-icon {
+    background-color: white;
+    color:#74aaff;
+    padding-left:45;
+    margin-left:15;
+  }
+
 </style>

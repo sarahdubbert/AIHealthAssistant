@@ -23,28 +23,28 @@ export default new Vuex.Store({
   },
   mutations: {
     increasePointsSleep(state, numHours) {
-      state.totalPoints += (2 * numHours);
-      state.sleepPoints += (2 * numHours);
+      state.totalPoints += (1* numHours);
+      state.sleepPoints += (1* numHours);
     },
 
     increasePointsExercise(state, numHours) {
-      state.totalPoints += (5 * numHours);
-      state.exercisePoints += (5 * numHours);
+      state.totalPoints += (1* numHours);
+      state.exercisePoints += (1* numHours);
     },
 
-    increasePointsEating(state, calories) {
-      state.totalPoints += (4 * calories);
-      state.eatingPoints += (4 * calories);
+    increasePointsEating(state, meals) {
+      state.totalPoints += (1* meals);
+      state.eatingPoints += (1* meals);
     },
 
-    increasePointsRelationships(state, hours) {
-      state.totalPoints += (6 * hours);
-      state.relationshipPoints += (6 * hours);
+    increasePointsRelationships(state, numHours) {
+      state.totalPoints += (1* numHours);
+      state.relationshipPoints += (1* numHours);
     },
 
-    increasePointsCare(state, hours) {
-      state.totalPoints += (6 * hours);
-      state.carePoints += (6 * hours);
+    increasePointsCare(state, numHours) {
+      state.totalPoints += (1* numHours);
+      state.carePoints += (1* numHours);
     },
 
     updateSleepGoal(state, numHours) {
