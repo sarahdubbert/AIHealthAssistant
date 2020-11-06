@@ -64,11 +64,14 @@
             </Button>
             </FlexBoxLayout>
             <FlexBoxLayout alignItems="center" class="">
-            <Button @tap="relationshipsTap" class="my-button-home btn-primary btn-rounded-lg">
-              <Span class="fas" :text="'fa-user-friends' | fonticon"></Span>
-              <Span text="  Relationships"></Span>
-            </Button>
+              <Button @tap="relationshipsTap" class="my-button-home btn-primary btn-rounded-lg">
+                <Span class="fas" :text="'fa-user-friends' | fonticon"></Span>
+                <Span text="  Relationships"></Span>
+              </Button>
             </FlexBoxLayout>
+            <Label row="0" col="1" horizontalAlignment="center">{{ weather.highTemperature | fahrenheit }}F</Label>
+            <Label :text="weather.utcTime | pretty" row="1" col="1" horizontalAlignment="center"/>
+            <Image :src="weather.iconLink"/>
           </StackLayout>
         </RadSideDrawer>
       </GridLayout>
@@ -86,14 +89,25 @@ import SelfCare from "./SelfCare";
 import Relationships from "./Relationships";
 import MyPoints from "./MyPoints";
 import MyProfile from "./MyProfile";
+import * as http from "http";
+import * as moment from "moment";
 
 Vue.use(RadSideDrawer);
 
 
 export default {
   name: "Home",
+  data() {
+    return {
+      weather: {},
+      textFieldValue: "",
+      homeAlert:false,
+      mainContentText:
+        "SideDrawer for NativeScript can be easily setup in the XML definition of your page by defining main- and drawer-content. The component" +
+        " has a default transition and position and also exposes notifications related to changes in its state. Swipe from left to open side drawer.",
+    };
+  },
   methods: {
-
     onButtonTap() {
       console.log("Button was pressed");
     },
@@ -119,7 +133,6 @@ export default {
     },
 
     homeTap() {
-      console.log("sdfsdf");
       this.$navigateTo(Home);
     },
     myProfileTap() {
@@ -180,6 +193,33 @@ export default {
       });
       }
     },
+    getWeather(apiKey, position) {
+        const params = {
+            product: "forecast_7days_simple",
+            latitude: position.latitude,
+            longitude: position.longitude,
+            apiKey: apiKey,
+        }
+        http.getJSON("https://weather.api.here.com/weather/1.0/report.json" + this.encodeQueryParameters(params)).then(result => {
+            this.weather = result.dailyForecasts.forecastLocation.forecast[0];
+            console.log(this.weather);
+        }, error => {
+            console.error(error);
+        });
+    },
+    encodeQueryParameters(params) {
+        const encodedParameters = [];
+        for(const key in params) {
+            if(params.hasOwnProperty(key)) {
+                encodedParameters.push(key + "=" + encodeURIComponent(params[key]));
+            }
+        }
+        return "?" + encodedParameters.join("&");
+    }
+  },
+
+  mounted() {
+    this.getWeather("k5Rj_T8c5MWz5SLczL53O0EoC4HgRqx2BIFaRWlUv1E", { latitude: 39.0997, longitude: -94.5786 });
   },
 
   computed: {
@@ -191,17 +231,21 @@ export default {
       let day = toTwoDigits(today.getDate());
       return `${month}-${day}-${year}.`;
     },
+
+    getKCWeather() {
+      return this.weather;
+    }
   },
 
-  data() {
-    return {
-      textFieldValue: "",
-      homeAlert:false,
-      mainContentText:
-        "SideDrawer for NativeScript can be easily setup in the XML definition of your page by defining main- and drawer-content. The component" +
-        " has a default transition and position and also exposes notifications related to changes in its state. Swipe from left to open side drawer.",
-    };
-  },
+  filters: {
+    fahrenheit(value) {
+        return parseInt((value * (9 / 5)) + 32);
+    },
+    pretty(value) {
+        return moment(value).format("MMMM DD, YYYY");
+    }
+}
+
     
 };
 </script>

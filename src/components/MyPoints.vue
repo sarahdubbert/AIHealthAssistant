@@ -1,6 +1,8 @@
 <template>
    <Page>
     <GridLayout rows="*, auto">
+        <Label class="h2 welcome-text-goals" text="My Points" horizontalAlignment="center" color="#74aaff">
+        </Label>
       <RadRadialGauge :title="pointsFormat">
       <TitleStyle v-tkRadialGaugeTitleStyle textColor="gray" ios:textSize="22" ios:verticalOffset="30" android:verticalOffset="90" android:textSize="22"></TitleStyle>
       <RadialScale ref="myScale" v-tkRadialGaugeScales startAngle="0" sweepAngle="360" minimum="0" maximum="100" radius="0.9">
@@ -36,6 +38,10 @@
     
 
     Vue.use(RadSideDrawer);
+
+    var FeedbackPlugin = require("nativescript-feedback");
+    var feedback = new FeedbackPlugin.Feedback();
+    var color = require("color");
 
     export default {
         props: ["numHours"],
@@ -99,6 +105,15 @@
         mounted() {
             this.totalPoints = parseInt(this.pointsString) + this.$store.state.totalPoints;
             this.pointsString = this.totalPoints.toString();
+            if(this.$store.state.totalPoints >= 100) {
+            feedback.show({
+                messageSize: 14,
+                messageColor: new color.Color("#ffffff"),
+                backgroundColor: new color.Color("#74aaff"),
+                message: "Success! You have reached your points goal for the week."
+            });
+            console.log('shown feedback');
+      }
         },
         computed: {
             pointsFormat() {
