@@ -1,8 +1,8 @@
 <template>
    <Page>
     <GridLayout rows="*, auto">
-      <RadRadialGauge :title="title">
-      <TitleStyle v-tkRadialGaugeTitleStyle textColor="gray" ios:textSize="12" ios:verticalOffset="30" android:verticalOffset="90"></TitleStyle>
+      <RadRadialGauge :title="sleepPointsFormat">
+      <TitleStyle v-tkRadialGaugeTitleStyle textColor="gray" ios:textSize="22" ios:verticalOffset="30" android:verticalOffset="90" android:textSize="22"></TitleStyle>
       <RadialScale ref="myScale" v-tkRadialGaugeScales startAngle="0" sweepAngle="360" minimum="0" maximum="100" radius="0.9">
         <ScaleStyle v-tkRadialScaleStyle ticksVisible="false" labelsVisible="false" lineThickness="0"></ScaleStyle>
         <RadialBarIndicator v-tkRadialScaleIndicators minimum="0" maximum="100" location="1">
@@ -78,9 +78,6 @@
             onCloseDrawerTap() {
                 this.$refs.drawer.nativeView.closeDrawer();
             },
-            calculateSleepPoints() {
-                this.sleepPoints = this.sleepPoints + 2 * this.numHours
-            },
             accessStore() {
                 this.$store.getPoints();
             },
@@ -99,8 +96,11 @@
             }
         },
         mounted() {
-            this.calculateSleepPoints();
-            this.title = this.sleepPoints + "/100";
+        },
+        computed: {
+            sleepPointsFormat() {
+                return this.sleepPoints + "/100";
+            }
         }
     };
 </script>
