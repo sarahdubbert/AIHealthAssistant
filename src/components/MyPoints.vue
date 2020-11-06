@@ -114,6 +114,15 @@
         mounted() {
             this.totalPoints = parseInt(this.pointsString) + this.$store.state.totalPoints;
             this.pointsString = this.totalPoints.toString();
+            if(this.totalPoints >= 100) {
+                alert({
+                    title:"Great work, Sarah!",
+                    message:"You've completed your goal for this week!",                   
+                    okButtonText: "Keep Earning Points",
+                    }).then(() => {
+                    console.log("Alert dialog closed");
+                });
+            }
         },
         computed: {
             pointsFormat() {

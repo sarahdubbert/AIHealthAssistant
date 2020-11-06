@@ -17,7 +17,6 @@ export default new Vuex.Store({
     eatingGoal: 3,
     careGoal: 1,
     relationshipGoal: 2,
-
     homeAlert: false,
     
   },
