@@ -1,14 +1,14 @@
 <template>
    <Page>
     <GridLayout rows="*, auto">
-      <RadRadialGauge :title="sleepPointsFormat">
+      <RadRadialGauge :title="pointsFormat">
       <TitleStyle v-tkRadialGaugeTitleStyle textColor="gray" ios:textSize="22" ios:verticalOffset="30" android:verticalOffset="90" android:textSize="22"></TitleStyle>
       <RadialScale ref="myScale" v-tkRadialGaugeScales startAngle="0" sweepAngle="360" minimum="0" maximum="100" radius="0.9">
         <ScaleStyle v-tkRadialScaleStyle ticksVisible="false" labelsVisible="false" lineThickness="0"></ScaleStyle>
         <RadialBarIndicator v-tkRadialScaleIndicators minimum="0" maximum="100" location="1">
             <BarIndicatorStyle v-tkRadialBarIndicatorStyle fillColor="rgba(132,235,247,0.5)" barWidth="0.2"></BarIndicatorStyle>
           </RadialBarIndicator>
-          <RadialBarIndicator v-tkRadialScaleIndicators minimum="0" :maximum="sleepPoints" location="1" isAnimated="true">
+          <RadialBarIndicator v-tkRadialScaleIndicators minimum="0" :maximum="totalPoints" location="1" isAnimated="true">
             <BarIndicatorStyle v-tkRadialBarIndicatorStyle cap="Round" fillColor="rgba(132,235,247,1)" barWidth="0.2"></BarIndicatorStyle>
           </RadialBarIndicator>
       </RadialScale>
@@ -91,15 +91,18 @@
         },
         data() {
             return {
-                sleepPoints: "10",
-                title: ""
+                pointsString: "0",
+                title: "",
+                totalPoints: 0
             }
         },
         mounted() {
+            this.totalPoints = parseInt(this.pointsString) + this.$store.state.totalPoints;
+            this.pointsString = this.totalPoints.toString();
         },
         computed: {
-            sleepPointsFormat() {
-                return this.sleepPoints + "/100";
+            pointsFormat() {
+                return this.pointsString + "/100";
             }
         }
     };

@@ -130,7 +130,7 @@ export default {
     },
 
     onSubmit() {
-      this.$store.commit('increasePointsEating', this.textFieldValue);
+      this.$store.commit('increasePointsEating', parseInt(this.textFieldValue));
       if(this.$store.state.eatingGoal > this.$store.state.eatingPoints) {
         feedback.show({
             messageSize: 14,

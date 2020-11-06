@@ -127,7 +127,6 @@ export default {
     },
     myPointsTap() {
       this.$navigateTo(MyPoints);
-      console.log("we are at home");
     },
 
     onOpenDrawerTap() {

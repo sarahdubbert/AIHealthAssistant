@@ -131,7 +131,7 @@ export default {
     },
 
     onSubmit() {
-      this.$store.commit('increasePointsRelationships', this.textFieldValue);
+      this.$store.commit('increasePointsRelationships', parseInt(this.textFieldValue));
       if(this.$store.state.relationshipGoal > this.$store.state.relationshipPoints) {
         feedback.show({
             messageSize: 14,

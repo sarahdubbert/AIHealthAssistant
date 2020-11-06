@@ -128,7 +128,7 @@ export default {
     },
 
     onSubmit() {
-      this.$store.commit('increasePointsCare', this.textFieldValue);
+      this.$store.commit('increasePointsCare', parseInt(this.textFieldValue));
       if(this.$store.state.careGoal > this.$store.state.carePoints) {
         feedback.show({
             messageSize: 14,

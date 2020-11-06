@@ -127,7 +127,7 @@ export default {
     },
 
     onSubmit() {
-      this.$store.commit('increasePointsExercise', this.textFieldValue);
+      this.$store.commit('increasePointsExercise', parseInt(this.textFieldValue));
       if(this.$store.state.exerciseGoal > this.$store.state.exercisePoints) {
         feedback.show({
             messageSize: 14,

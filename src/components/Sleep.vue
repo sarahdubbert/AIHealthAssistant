@@ -131,7 +131,7 @@ export default {
     },
 
     onSubmit() {
-      this.$store.commit('increasePointsSleep', this.textFieldValue);
+      this.$store.commit('increasePointsSleep', parseInt(this.textFieldValue));
       if(this.$store.state.sleepGoal > this.$store.state.sleepPoints) {
         feedback.show({
             messageSize: 14,
