@@ -5,13 +5,14 @@
       <GridLayout rows="*" height="1500px">
         <RadSideDrawer ref="drawer">
           <StackLayout ~drawerContent class="sidedrawer-content">
-            <StackLayout
-              height="56"
-              style="text-align: center; vertical-align: center;"
-            >
-            </StackLayout>
+            <Button @tap="onCloseDrawerTap"
+                class="fas nav-bars" horizontalAlignment="left" androidElevation="0"
+                :text="'fa-bars' | fonticon">
+            </Button>
             <StackLayout>
-              <Label class="label sidedrawer-list-item-selected" text="Home" padding="10"/>
+              <Label 
+                class="label sidedrawer-list-item" text="Home" color="#74aaff" backgroundColor="white" padding="10"
+              />
               <Label
                 class="label sidedrawer-list-item"
                 text="My Points"
@@ -20,13 +21,7 @@
               />
               <Label class="label sidedrawer-list-item" text="My Goals" @tap="myProfileTap" padding="10" />
             </StackLayout>
-            <Label
-              class="label"
-              text="Close"
-              padding="10"
-              style="horizontal-align: center"
-              @tap="onCloseDrawerTap"
-            />
+            
           </StackLayout>
           <StackLayout ~mainContent class="container">
             <FlexboxLayout class="action-bar welcome">
@@ -284,5 +279,12 @@ export default {
     margin-top:-30;
     padding-right:-30;
     padding-left:-30;
+  }
+
+  .nav-bars {
+    background-color:#74aaff;
+    color: white;
+    padding-left:-35;
+    padding-top:-25;
   }
 </style>
