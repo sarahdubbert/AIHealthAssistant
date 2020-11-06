@@ -9,7 +9,6 @@
               height="56"
               style="text-align: center; vertical-align: center;"
             >
-              <Label class="label" text="Navigation Menu" />
             </StackLayout>
             <StackLayout>
               <Label class="label sidedrawer-list-item-selected" text="Home" padding="10"/>
@@ -153,7 +152,7 @@ export default {
       if(hour >=5 && hour <=8){
         alert({
           title: "It's currently " + `${hour}:${minutes}`,
-          message: "It's a great time to do some self care.",
+          message: "It's a great time to recharge and take some time to take care of yourself.",
           okButtonText: "Keep Earning Points"
         }).then(() => {
         console.log("Alert dialog closed");
@@ -171,7 +170,7 @@ export default {
       if(hour >=17 && hour <=20){
         alert({
           title: "It's currently " + `${hour}:${minutes}`,
-          message: "It's a great time to spend time with a loved one.",
+          message: "It's a great time to spend time with a loved one or pet.",
           okButtonText: "Keep Earning Points"
         }).then(() => {
         console.log("Alert dialog closed");

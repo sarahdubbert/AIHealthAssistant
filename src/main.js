@@ -18,7 +18,6 @@ Vue.registerElement(
 )
 
 
-
 TNSFontIcon.debug = true;
 TNSFontIcon.paths = {
   'fa': './assets/fontawesome.min.css',

@@ -39,28 +39,17 @@
                   </FormattedString>
                 </Label>
             </FlexBoxLayout>
-            <FlexBoxLayout alignItems="center" class="fun-fact">
-              <Label textWrap="true" color="#74aaff">
-                <FormattedString>
-                  <Span text="Did you know " fontWeight="Bold" />
-                  <Span
-                    text="that getting enough sleep improves your concentration and focus?"
-                  />
-                </FormattedString>
-              </Label>
-            </FlexBoxLayout>
             <FlexBoxLayout alignItems="center" class="current-goal">
               <Label textWrap="true" color="#74aaff">
                 <FormattedString>
-                  <Span text="Your current goal is to get " />
-                  <Span :text=" sleepGoal " fontWeight="Bold" />
-                  <Span text=" hours of sleep each night." />
+                  <Span text="You have\n" />
+                  <Span :text=" currentProgress " fontWeight="Bold" fontSize="36"/>
+                  <Span text="  of  " />
+                  <Span :text=" sleepGoal + '\n'" fontWeight="Bold" fontSize="36"/>
+                  <Span text=" hours completed toward your goal." />
                 </FormattedString>
               </Label>
-            <FlexBoxLayout alignItems="center" class="progress">
-              <Progress :value="currentProgress" maxValue="this.$store.state.sleepGoal" 
-              color="#74aaff"/>
-            </FlexBoxLayout>
+            
             </FlexBoxLayout>
             <FlexBoxLayout alignItems="center" class="enter-hours">
               <Label textWrap="true" color="#74aaff">
@@ -80,6 +69,16 @@
             </FlexBoxLayout>
             <FlexBoxLayout alignItems="center" class="submit-button">
               <Button text="Submit Hours" @tap="onSubmit" class="my-button-category btn btn-primary btn-rounded-lg" />
+            </FlexBoxLayout>
+            <FlexBoxLayout alignItems="center" class="fun-fact">
+              <Label textWrap="true" color="#74aaff">
+                <FormattedString>
+                  <Span text="Did you know " fontWeight="Bold" />
+                  <Span
+                    text="that getting enough sleep improves your concentration and focus?"
+                  />
+                </FormattedString>
+              </Label>
             </FlexBoxLayout>
           </StackLayout>
         </RadSideDrawer>
@@ -104,8 +103,11 @@ var FeedbackPlugin = require("nativescript-feedback");
 var feedback = new FeedbackPlugin.Feedback();
 var color = require("color");
 
+
+
 export default {
   methods: {
+    
     dismissKeyboard() {
       utils.ad.dismissSoftInput();
     },
@@ -175,9 +177,8 @@ export default {
 
   data() {
     return {
+      
       isBusy: true,
-
-      selectedListPickerIndex: 0,
 
       currentHour: new Date().getHours(),
       currentMinute: new Date().getMinutes(),
@@ -211,6 +212,7 @@ export default {
 }
 
 .welcome-text-goals {
+  margin-left:55;
 }
 
 .container-category {
@@ -230,6 +232,7 @@ export default {
   height: 55;
   text-align:center;
   font-size:16;
+  margin-left:45;
   }
 
   .text-field {
@@ -242,11 +245,15 @@ export default {
   }
 
   .fun-fact {
-    font-size:12;
+    margin-top:50;
   }
 
   .current-goal {
     margin-bottom: 10;
+    text-align:center;
+    width:300;
+    margin-left:30;
+    margin-top: 20;
   }
 
   .progress {
@@ -255,6 +262,8 @@ export default {
 
   .enter-hours {
     margin-bottom: 10;
+    margin-left:60;
+    margin-top:30;
   }
 
   .submit-button {
