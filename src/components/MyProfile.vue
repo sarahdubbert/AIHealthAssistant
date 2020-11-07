@@ -178,7 +178,6 @@ export default {
       this.$navigateTo(MyPoints);
     },
   },
-
   data() {
     return {
       isBusy: true,

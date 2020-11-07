@@ -44,16 +44,16 @@
 }
 
 .action-bar {
-  background-color: #74aaff;
+  background-color: #83c5be;
 }
 
 .page {
-  background-color: #74aaff;
+  background-color: #83c5be;
 }
 
 .list-group,
 .list-group-item {
-  background-color: #74aaff;
+  background-color: #83c5be;
 }
 
 .page label,
@@ -62,7 +62,7 @@
 }
 
 .segmented-bar {
-  selected-background-color: #74aaff;
+  selected-background-color: #83c5be;
 }
 
 .segmented-bar {
@@ -78,7 +78,7 @@
 }
 
 .switch[checked="true"] {
-  background-color: #74aaff;
+  background-color: #83c5be;
 }
 
 .activity-indicator {
@@ -179,7 +179,7 @@
 }
 
 .btn-primary {
-  color: #74aaff;
+  color: #83c5be;
 }
 
 .btn-outline {
@@ -195,7 +195,7 @@
 }
 
 .btn-outline {
-  color: #74aaff;
+  color: #83c5be;
 }
 
 .btn[isEnabled="false"] {
@@ -207,7 +207,7 @@
 }
 
 .btn[isEnabled="false"] {
-  color: #74aaff;
+  color: #83c5be;
 }
 
 .btn-rounded-sm {
@@ -239,7 +239,7 @@
 }
 
 .tab-view {
-  tab-background-color: #74aaff;
+  tab-background-color: #83c5be;
 }
 
 .tab-view {
@@ -247,7 +247,7 @@
 }
 
 .sidedrawer-header {
-  background-color: #74aaff;
+  background-color: #83c5be;
 }
 
 .sidedrawer-header-brand {
@@ -255,7 +255,7 @@
 }
 
 .sidedrawer-content {
-  background-color: #74aaff;
+  background-color: #83c5be;
 }
 
 .sidedrawer-list-item {
